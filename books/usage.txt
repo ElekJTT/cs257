@@ -1,0 +1,24 @@
+Ryan Dunn and Elek Thomas-Toth usage.txt
+9-19-22
+
+NAME
+search - search through book files
+
+SYNOPSIS
+
+	python3 search.py authors [Option]... <String>
+	python3 search.py title [Option]... <String>
+	python3 search.py year <year1> <year2>
+
+
+DESCRIPTION
+	By default prints a list of books whose titles contain the string case insentive. Sorted by title. 
+
+	-a , --author
+		prints a list of authors whose names contain the string, case insenstive. 
+	-y , --year [Start Year] [End Year]
+		prints a list of books published between years A and B, inclusive.
+	-h, --help
+		gives a list of commands you can use with our program. 
+
+
