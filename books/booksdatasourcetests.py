@@ -1,5 +1,6 @@
 '''
    booksdatasourcetest.py
+   Ryan Dunn and Elek Thomas-Toth - Sept 23rd, September 2022
    Jeff Ondich, 24 September 2021
 '''
 
@@ -25,16 +26,67 @@ class BooksDataSourceTester(unittest.TestCase):
         self.assertTrue(books[0].title == 'Emma')
         self.assertTrue(books[1].title == 'Neverwhere')
         self.assertTrue(books[2].title == 'Omoo')
+   
+    def test_search_books(self):
+        tiny_data_source = BooksDataSource('tinybooks.csv')
+        books = tiny_data_source.books("M")
+        self.assertEqual(books[0] == "Emma")
+        self.assertEqual(books[1] == "Omoo")
 
-    def test_authors(self):
-	tiny_data_source = BooksDataSource('tinybooks.csv')
-	authors = tiny_data_source.authors()
-	self.assertTrue = (len(authors) == 3) 
-	self.assertTrue(author[0].given_name == 'Jane Austen')
-	self.assertTrue(author[1].given_name == 'Neil Gaiman')
-	self.assertTrue(author[2].given_name == 'Herman Melville')
+    def test_sort_by_year_books(self):
+        tiny_data_source = BooksDataSource('tinybooks.csv')
+        books = tiny_data_source.books("m", "year")
+        self.assertTrue(books[0] == "Emma")
+        self.assertTrue(books[1] == "Omoo")
 
+    def test_empty_search_books(self):
+        tiny_data_source = BooksDataSource('tinybooks.csv')
+        books = tiny_data_source.books("Bet you haven't heard of this book")
+        self.assertIsNone(books)
 
+    def test_all_authors(self):
+        tiny_data_source = BooksDataSource('tinybooks.csv')
+        authors = tiny_data_source.authors()
+        self.assertTrue = (len(authors) == 3) 
+        self.assertTrue(authors[0].given_name == 'Jane Austen')
+        self.assertTrue(authors[1].given_name == 'Neil Gaiman')
+        self.assertTrue(authors[2].given_name == 'Herman Melville')
+   
+    def test_search_authors(self):
+        tiny_data_source = BooksDataSource('tinybooks.csv')
+        authors = tiny_data_source.authors("Jane")
+        self.assertEqual(authors[0] == "Jane Austen")
+        authors = tiny_data_source.authors("jaNe")
+        self.assertEqual(authors[0] == "Jane Austen")
+
+    def test_empty_search_authors(self):
+        authors = tiny_data_source.authors("Janet Boston")
+        self.assertIsNone(authors)
+ 
+    def test_books_between_years(self):
+        tiny_data_source = BooksDataSource('tinybooks.csv')
+        books  = tiny_data_source.books_between_years(1800, 1900)
+        self.assertTrue(books[0] == "Emma")
+        self.assertTrue(books[1] == "Omoo")
+
+    def test_no_books_published_books_between_years(self):
+        tiny_data_source = BooksDataSource('tinybooks.csv')
+        books  = tiny_data_source.books_between_years(2100, 2200)
+        self.assertIsNone(books)
+
+    def test_wrong_order_books_between_years(self):
+        tiny_data_source = BooksDataSource('tinybooks.csv')
+        books  = tiny_data_source.books_between_years(1900, 1800)
+        self.assertRaises(exception)
+
+    def test_no_date_books_between_years(self):
+        tiny_data_source = BooksDataSource('tinybooks.csv')
+        books  = tiny_data_source.books_between_years()
+        self.assertEqual(len(books) == 3)
+        self.assertTrue(books[0].title == 'Emma')
+        self.assertTrue(books[1].title == 'Omoo')
+        self.assertTrue(books[2].title == 'Neverwhere')
+	
 if __name__ == '__main__':
     unittest.main()
 
