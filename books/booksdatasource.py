@@ -20,6 +20,16 @@ class Author:
         ''' For simplicity, we're going to assume that no two authors have the same name. '''
         return self.surname == other.surname and self.given_name == other.given_name
 
+    def __lt__(self, other):
+        if self.surname < other.surname:
+            return True
+        if self.surname == other.surname and self.given_name < other.given_name:
+            return True
+        return False
+
+    def __str__(self):
+        return
+
 class Book:
     def __init__(self, title='', publication_year=None, authors=[]):
         ''' Note that the self.authors instance variable is a list of
@@ -34,14 +44,19 @@ class Book:
             thing as "same book". '''
         return self.title == other.title
 
+    def __str__(self):
+        return
+
+
 class BooksDataSource: #Not for user to use. There is a difference between user typing stuff to command line interface. 
     def __init__(self, books_csv_file_name):
         self.bookList = []
-        
+
         self.authors = {
 
         }
 
+        #How do we deal with middle names?
         with open(books_csv_file_name, 'r') as books:
             booksReader = csv.reader(books)
             for row in booksReader: 
@@ -53,7 +68,7 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
                     full_name = master_string_split[0].strip()
                     if full_name not in self.authors:
                         author_given = full_name[0].split()[0]
-                        author_last = full_name[0].split()[1]
+                        author_last = full_name[0].split()[-1]
 
                         date = master_string_split[1][:-1]
                         date_split = date.split("-")
@@ -121,3 +136,5 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
         '''
         return []
 
+if __name__ == '__main__':
+    
