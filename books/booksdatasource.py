@@ -37,14 +37,12 @@ class Book:
 class BooksDataSource:
     def __init__(self, books_csv_file_name):
         self.bookList = []
+        self.authors = {
+
+        }
 
         with open(books_csv_file_name, 'r') as books:
             booksReader = csv.reader(books)
-
-            authors = {
-
-            }
-
             for row in booksReader: 
                 authorSplit = row[2].replace(" and ", ",").split(", ")
                 
@@ -52,7 +50,7 @@ class BooksDataSource:
                 for item in authorSplit:
                     master_string_split = item.split("(")
                     full_name = master_string_split[0].strip()
-                    if full_name not in authors:
+                    if full_name not in self.authors:
                         author_given = full_name[0].split()[0]
                         author_last = full_name[0].split()[1]
 
@@ -63,11 +61,11 @@ class BooksDataSource:
                         death_year = date_split[1]
 
                         new_author = Author(author_last, author_given, birth_year, death_year)                        
-                        authors[full_name] = new_author
+                        self.authors[full_name] = new_author
 
                         author_objects.append(new_author)
                     else: 
-                        author_objects.append(authors[full_name])
+                        author_objects.append(self.authors[full_name])
 
                 newBook = Book(row[0], row[1], author_objects)
                 self.bookList.append(newBook)
