@@ -1,6 +1,6 @@
 '''
    booksdatasourcetest.py
-   Ryan Dunn and Elek Thomas-Toth - Sept 23rd, September 2022 - git Test
+   Ryan Dunn and Elek Thomas-Toth - Sept 23rd, September 2022
    Jeff Ondich, 24 September 2021
 '''
 
