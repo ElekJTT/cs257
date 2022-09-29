@@ -51,32 +51,30 @@ def usage_statement():
 def parse_command_line():
     arguments = {}
 
-        #parsing args for between years command
-        if sys.argv[1] == '--year' or sys.argv[1] == '-y':
 
+    
+    #setting option to correct modifier
+    for option in sys.argv:
+        if option == '-a' or option == '--author':
+            arguments['option'] = 'a'
+        elif option == '-p' or option == '--publication':
+            arguments['option'] = 'p'
+        elif option == '-p' or option == '--help':
+            arguments['option'] = 'h'
+        elif option == '-y' or option == '--year':
+            arguments['option'] = 'y'
             if len(sys.argv)>= 3:
                 arguments['year1'] = sys.argv[2]
 
             if len(sys.argv) == 4:
                 arguments['year2'] = sys.argv[3]
 
-        
-        #setting option to correct modifier
+
         else:
-            for option in sys.argv:
-                if option == '-a' or option == '--author':
-                    arguments['option'] = 'a'
-                elif option == '-p' or option == '--publication':
-                    arguments['option'] = 'p'
-                elif option == '-p' or option == '--help':
-                    arguments['option'] = 'h'
-                elif option == '-y' or option == '--year':
-                    arguments['option'] = 'y'
-                else:
-                    arguments['option'] = 'b'
-        
-            if '-' not in sys.argv[-1]:
-                arguments['string'] = sys.argv[-1]           
+            arguments['option'] = 'b'
+
+        if '-' not in sys.argv[-1]:
+            arguments['string'] = sys.argv[-1]           
     
     return arguments
 
