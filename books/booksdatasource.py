@@ -56,13 +56,15 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
 
         }
 
+        self.author_objects = []
+
         #How do we deal with middle names?
         with open(books_csv_file_name, 'r') as books:
             booksReader = csv.reader(books)
             for row in booksReader: 
                 authorSplit = row[2].replace(" and ", ",").split(", ")
                 
-                author_objects = []
+  
                 for item in authorSplit:
                     master_string_split = item.split("(")
                     full_name = master_string_split[0].strip()
