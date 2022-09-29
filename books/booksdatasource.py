@@ -107,7 +107,7 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
             returns all of the Author objects. In either case, the returned list is sorted
             by surname, breaking ties using given name (e.g. Ann Brontë comes before Charlotte Brontë).
         '''
-        return []
+        return [author_objects]
 
     def books(self, search_text=None, sort_by='title'):
         ''' Returns a list of all the Book objects in this data source whose
@@ -121,7 +121,7 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
                 default -- same as 'title' (that is, if sort_by is anything other than 'year'
                             or 'title', just do the same thing you would do for 'title')
         '''
-        return []
+        return [bookList]
 
     def books_between_years(self, start_year=None, end_year=None):
         ''' Returns a list of all the Book objects in this data source whose publication
@@ -134,7 +134,7 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
             during start_year should be included. If both are None, then all books
             should be included.
         '''
-        return []
+        return [bookList]
 
 if __name__ == '__main__':
     
