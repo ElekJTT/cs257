@@ -44,6 +44,12 @@ class Book:
             thing as "same book". '''
         return self.title == other.title
 
+    def __lt__(self, other):
+        if self.title < other.title:
+            return True
+
+        return False
+
     def __str__(self):
         return
 
@@ -109,7 +115,16 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
             returns all of the Author objects. In either case, the returned list is sorted
             by surname, breaking ties using given name (e.g. Ann Brontë comes before Charlotte Brontë).
         '''
-        return [author_objects]
+
+        if search_text == None:
+            return sorted(self.author_objects):
+
+        authors_to_print = []
+        for author in sorted(self.author_objects)
+            if search_text in author.full_name
+                authors_to_print.append(author)
+
+        return [authors_to_print]
 
     def books(self, search_text=None, sort_by='title'):
         ''' Returns a list of all the Book objects in this data source whose
@@ -123,7 +138,29 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
                 default -- same as 'title' (that is, if sort_by is anything other than 'year'
                             or 'title', just do the same thing you would do for 'title')
         '''
-        return [bookList]
+
+        if search_text == None:
+            return sorted(self.bookList):
+
+        books_to_print = []
+
+        if sort_by == 'title':
+            for book in sorted(self.bookList):
+                if search_text in book.title:
+                    books_to_print.append(book)
+
+        else:
+
+            for book in sort_books_by_year(sorted(self.bookList)):
+                if search_text in book.title:
+                    books_to_print.append(book)
+
+        return [books_to_print]
+
+        
+
+
+
 
     def books_between_years(self, start_year=None, end_year=None):
         ''' Returns a list of all the Book objects in this data source whose publication
@@ -136,7 +173,44 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
             during start_year should be included. If both are None, then all books
             should be included.
         '''
-        return [bookList]
+        books_between_years = []
 
-if __name__ == '__main__':
-    
+        if start_year == None and end_year == None:
+            return sort_books_by_year(self.bookList)
+
+        elif start_year == None:
+            for book in sorted(self.bookList):
+                if book.publication_year <= end_year:
+                    books_between_years.append(book)
+
+        elif end_year == None:
+            for book in sorted(self.bookList):
+                if book.publication_year >= start_year:
+                    books_between_years.append(book)
+
+        else:
+            for book in sorted(self.bookList):
+                if book.publication_year >= start_year and book.publication_year <= end_year:
+                    books_between_years.append(book)
+
+        return sort_books_by_year(books_between_years)
+
+
+    def sort_books_by_year(self, books)
+
+        for step in range(1, len(books)):
+            key = books[step].publication_year
+            j = step - 1
+            
+            # Compare key with each element on the left of it until an element smaller than it is found
+            # For descending order, change key<array[j] to key>array[j].        
+            while j >= 0 and key < books[j].publication_year:
+                books[j. + 1].publication_year = books[j].publication_year
+                j = j - 1
+
+            
+            # Place key at after the element just smaller than it.
+            books[j + 1].publication_year = key
+
+        return books
+
