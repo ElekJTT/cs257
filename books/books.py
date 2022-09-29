@@ -11,34 +11,34 @@ def main(arguments):
 
     if arguments['option'] == 'b':
         if 'string' in arguments:
-            print(datasource.books(self, arguments['string']))
+            print(datasource.books(), arguments['string'])
         else:
-            print(datasource.books(self))
+            print(datasource.books())
 
     if arguments['option'] == 'a':
         if 'string' in arguments:
-            print(datasource.authors(self, arguments['string']))
+            print(datasource.authors(), arguments['string'])
         else:
-            print(datasource.authors(self))
+            print(datasource.authors())
 
     if arguments['option'] == 'p':
         if 'string' in arguments:
-            print(datasource.books(self, arguments['string'], 'year'))
+            print(datasource.books(arguments['string'], 'year'))
         else:
-            print(datasource.books(self, None, 'year'))
+            print(datasource.books(None, 'year'))
 
     if arguments['option'] == 'y':
 
         if 'year1' in arguments:
             if 'year2' in arguments:
-                print(datasource.books_between_years(self, arguments['year1'], arguments['year2']))
+                print(datasource.books_between_years(arguments['year1'], arguments['year2']))
             else:
-                print(datasource.books_between_years(self, arguments['year1']))
+                print(datasource.books_between_years(arguments['year1']))
         else:
             if 'year2' in arguments:
-                print(datasource.books_between_years(self, arguments['year2']))
+                print(datasource.books_between_years(arguments['year2']))
             else:
-                print(datasource.books_between_years(self))
+                print(datasource.books_between_years())
 
 
 
