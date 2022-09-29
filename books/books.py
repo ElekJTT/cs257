@@ -5,6 +5,7 @@ def main(arguments):
 
     datasource = BooksDataSource('books1.csv')
 
+    print(usage_statement)
 
     if arguments['option'] == 'h':
         print(usage_statement)
@@ -76,6 +77,7 @@ def parse_command_line():
         if '-' not in sys.argv[-1]:
             arguments['string'] = sys.argv[-1]           
     
+    main(arguments)
     return arguments
 
 arguments = parse_command_line()
