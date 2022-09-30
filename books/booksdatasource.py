@@ -162,11 +162,6 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
         else:
             return books_to_print
 
-        
-
-
-
-
     def books_between_years(self, start_year=None, end_year=None):
         ''' Returns a list of all the Book objects in this data source whose publication
             years are between start_year and end_year, inclusive. The list is sorted

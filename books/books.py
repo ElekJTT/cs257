@@ -1,6 +1,7 @@
 import sys
 from booksdatasource import *
 
+"""books.py by Elek Thomas-Toth and Ryan Dunn  9-29-22"""
 def main(arguments):
 
     datasource = BooksDataSource('tinybooks.csv')
@@ -67,6 +68,9 @@ def main(arguments):
 
 def usage_statement():
     statement = f'Usage: book searching of various forms\n'
+
+    with open("usage.txt") as help:
+        helpDoc = csv.reader(help)
     return statement
 
 def parse_command_line():
@@ -80,7 +84,7 @@ def parse_command_line():
             arguments['option'] = 'a'
         elif option == '-p' or option == '--publication':
             arguments['option'] = 'p'
-        elif option == '-p' or option == '--help':
+        elif option == '-h' or option == '--help':
             arguments['option'] = 'h'
         elif option == '-y' or option == '--year':
             arguments['option'] = 'y'
