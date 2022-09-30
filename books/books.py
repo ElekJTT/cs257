@@ -24,6 +24,7 @@ def main(arguments):
             for author in author_source:
                 print(author)
         else:
+            author_source = datasource.authors()
             for author in author_source:
                 print(author)
 
@@ -41,6 +42,8 @@ def main(arguments):
 
         if 'year1' in arguments:
             if 'year2' in arguments:
+                if arguments['year1'] > arguments['year2']:
+                    raise Exception("Start date cannot be after end date")
                 booksource = datasource.books_between_years(arguments['year1'], arguments['year2'])
                 for book in booksource:
                     print(book)

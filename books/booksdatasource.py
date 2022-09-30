@@ -120,7 +120,7 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
             return sorted(self.author_objects)
         
         for author in sorted(self.author_objects):
-            if search_text in author.given_name or search_text in author.surname:
+            if search_text.lower() in author.given_name.lower() or search_text.lower() in author.surname.lower() or search_text.lower() in author.given_name.lower() + "" + author.surname.lower():
                 authors_to_print.append(author)
         
         if len(authors_to_print) < 1:
@@ -148,13 +148,13 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
 
         if sort_by == 'title':
             for book in sorted(self.bookList):
-                if search_text in book.title:
+                if search_text.lower() in book.title.lower():
                     books_to_print.append(book)
 
         else:
 
             for book in self.sort_books_by_year(sorted(self.bookList)):
-                if search_text in book.title:
+                if search_text.lower() in book.title.lower():
                     books_to_print.append(book)
 
         if len(books_to_print) < 1:
@@ -185,7 +185,11 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
             end_year = int(end_year)
 
         if start_year == None and end_year == None:
-            return self.sort_books_by_year(self.bookList)
+
+            for item in self.bookList:
+                books_between_years.append(item)
+
+            return self.sort_books_by_year(books_between_years)
 
         elif start_year == None:
             for book in sorted(self.bookList):
@@ -204,7 +208,7 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
 
         if len(books_between_years) < 1:
             return None
-        return self.sort_books_by_year(books_between_years)
+        return self.sort_books_by_year(sorted(books_between_years))
 
 
     def sort_books_by_year(self, books):
@@ -225,3 +229,8 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
 
         return books
 
+
+if __name__ == "__main__":
+    ds = BooksDataSource('tinybooks.csv')
+    for item in ds.authors:
+        print(item.given_name)

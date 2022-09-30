@@ -17,7 +17,7 @@ class BooksDataSourceTester(unittest.TestCase):
     def test_unique_author(self):
         authors = self.data_source.authors('Pratchett')
         self.assertTrue(len(authors) == 1)
-        self.assertTrue(authors[0] == Author('Pratchett', 'Terry',1800,3232))
+        self.assertEqual(authors[0].given_name,'Terry')
 
     def test_all_books(self):
         tiny_data_source = BooksDataSource('tinybooks.csv')
@@ -30,8 +30,8 @@ class BooksDataSourceTester(unittest.TestCase):
     def test_search_books(self):
         tiny_data_source = BooksDataSource('tinybooks.csv')
         books = tiny_data_source.books("M")
-        self.assertTrue(books[0].title == "Emma")
-        self.assertTrue(books[1].title == "Omoo")
+        self.assertEqual(books[0].title, "Emma")
+        self.assertEqual(books[1].title,"Omoo")
 
     def test_sort_by_year_books(self):
         tiny_data_source = BooksDataSource('tinybooks.csv')
@@ -48,16 +48,16 @@ class BooksDataSourceTester(unittest.TestCase):
         tiny_data_source = BooksDataSource('tinybooks.csv')
         authors = tiny_data_source.authors()
         self.assertTrue = (len(authors) == 3) 
-        self.assertTrue(authors[0].given_name == 'Jane Austen')
-        self.assertTrue(authors[1].given_name == 'Neil Gaiman')
-        self.assertTrue(authors[2].given_name == 'Herman Melville')
+        self.assertEqual(authors[0].given_name, 'Jane')
+        self.assertEqual(authors[1].given_name, 'Neil')
+        self.assertEqual(authors[2].given_name, 'Herman')
    
     def test_search_authors(self):
         tiny_data_source = BooksDataSource('tinybooks.csv')
         authors = tiny_data_source.authors("Jane")
-        self.assertTrue(authors[0] == Author("Austen", "Jane"))
+        self.assertEqual(authors[0].given_name, "Jane")
         authors = tiny_data_source.authors("jaNe")
-        self.assertTrue(authors[0] == Author("Austen", "Jane"))
+        self.assertEqual(authors[0].given_name, "Jane")
 
     def test_empty_search_authors(self):
         tiny_data_source = BooksDataSource("tinybooks.csv")
@@ -78,7 +78,7 @@ class BooksDataSourceTester(unittest.TestCase):
     def test_wrong_order_books_between_years(self):
         tiny_data_source = BooksDataSource('tinybooks.csv')
         books  = tiny_data_source.books_between_years(1900, 1800)
-        self.assertRaises(exception)
+        self.assertRaises(Exception)
 
     def test_no_date_books_between_years(self):
         tiny_data_source = BooksDataSource('tinybooks.csv')
