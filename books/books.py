@@ -3,7 +3,7 @@ from booksdatasource import *
 
 def main(arguments):
 
-    datasource = BooksDataSource('books1.csv')
+    datasource = BooksDataSource('tinybooks.csv')
 
     if arguments['option'] == 'h':
         print(usage_statement())
@@ -15,33 +15,48 @@ def main(arguments):
                 print(book)
         else:
             booksource = datasource.books()
-            for item in booksource:
-                print(item)
+            for book in booksource:
+                print(book)
 
     if arguments['option'] == 'a':
         if 'string' in arguments:
-            print(datasource.authors(), arguments['string'])
+            author_source = datasource.authors(arguments['string'])
+            for author in author_source:
+                print(author)
         else:
-            print(datasource.authors())
+            for author in author_source:
+                print(author)
 
     if arguments['option'] == 'p':
         if 'string' in arguments:
-            print(datasource.books(arguments['string'], 'year'))
+            booksource = datasource.books(arguments["string"], "year")
+            for book in booksource: 
+                print(book)
         else:
-            print(datasource.books(None, 'year'))
+            booksource = datasource.books()
+            for book in booksource: 
+                print(book)
 
     if arguments['option'] == 'y':
 
         if 'year1' in arguments:
             if 'year2' in arguments:
-                print(datasource.books_between_years(arguments['year1'], arguments['year2']))
+                booksource = datasource.books_between_years(arguments['year1'], arguments['year2'])
+                for book in booksource:
+                    print(book)
             else:
-                print(datasource.books_between_years(arguments['year1']))
+                booksource = datasource.books_between_years(arguments['year1'])
+                for book in booksource: 
+                    print(book)
         else:
             if 'year2' in arguments:
-                print(datasource.books_between_years(arguments['year2']))
+                booksource = datasource.books_between_years(arguments['year2'])
+                for book in booksource: 
+                    print(book)
             else:
-                print(datasource.books_between_years())
+                booksource = datasource.books_between_years()
+                for book in booksource: 
+                    print(book)
 
 
 

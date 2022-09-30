@@ -69,20 +69,19 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
             booksReader = csv.reader(books)
             for row in booksReader: 
                 authorSplit = row[2].replace(" and ", ",").split(", ")
-                
   
                 for item in authorSplit:
                     master_string_split = item.split("(")
                     full_name = master_string_split[0].strip()
                     if full_name not in self.authorsDict:
-                        author_given = full_name[0].split()[0]
-                        author_last = full_name[0].split()[-1]
+                        author_given = full_name[0].split()[0].strip()
+                        author_last = full_name[0].split()[-1].strip()
 
                         date = master_string_split[1][:-1]
                         date_split = date.split("-")
 
-                        birth_year = date_split[0]
-                        death_year = date_split[1]
+                        birth_year = date_split[0].strip()
+                        death_year = date_split[1].strip()
 
                         new_author = Author(author_last, author_given, birth_year, death_year)                        
                         self.authorsDict[full_name] = new_author
@@ -91,7 +90,7 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
                     else: 
                         self.author_objects.append(self.authorsDict[full_name])
 
-                newBook = Book(row[0], row[1], self.author_objects)
+                newBook = Book(row[0].strip(), row[1].strip(), self.author_objects)
                 self.bookList.append(newBook)
 
         ''' The books CSV file format looks like this:
@@ -115,16 +114,19 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
             returns all of the Author objects. In either case, the returned list is sorted
             by surname, breaking ties using given name (e.g. Ann Brontë comes before Charlotte Brontë).
         '''
+        authors_to_print = []
 
         if search_text == None:
             return sorted(self.author_objects)
-
-        authors_to_print = []
+        
         for author in sorted(self.author_objects):
             if search_text in author.given_name or search_text in author.surname:
                 authors_to_print.append(author)
+        
+        if len(authors_to_print) < 1:
+            return None
 
-        return [authors_to_print]
+        return authors_to_print
 
     def books(self, search_text=None, sort_by='title'):
         ''' Returns a list of all the Book objects in this data source whose
@@ -200,6 +202,8 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
                 if book.publication_year >= int(start_year) and book.publication_year <= int(end_year):
                     books_between_years.append(book)
 
+        if len(books_between_years) < 1:
+            return None
         return self.sort_books_by_year(books_between_years)
 
 
