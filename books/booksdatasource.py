@@ -74,8 +74,8 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
                     master_string_split = item.split("(")
                     full_name = master_string_split[0].strip()
                     if full_name not in self.authorsDict:
-                        author_given = full_name[0].split()[0].strip()
-                        author_last = full_name[0].split()[-1].strip()
+                        author_given = full_name.split(" ")[0].strip()
+                        author_last = full_name.split(" ")[-1].strip()
 
                         date = master_string_split[1][:-1]
                         date_split = date.split("-")
@@ -232,5 +232,5 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
 
 if __name__ == "__main__":
     ds = BooksDataSource('tinybooks.csv')
-    for item in ds.authors:
+    for item in ds.authors():
         print(item.given_name)
