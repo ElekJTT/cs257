@@ -7,9 +7,9 @@ def main(arguments):
     datasource = BooksDataSource('tinybooks.csv')
 
     if arguments['option'] == 'h':
-        print(usage_statement())
+        usage_statement()
 
-    if arguments['option'] == 'b':
+    elif arguments['option'] == 'b':
         if 'string' in arguments:
             booksource = datasource.books(arguments['string'])
             for book in booksource:
@@ -19,7 +19,7 @@ def main(arguments):
             for book in booksource:
                 print(book)
 
-    if arguments['option'] == 'a':
+    elif arguments['option'] == 'a':
         if 'string' in arguments:
             author_source = datasource.authors(arguments['string'])
             for author in author_source:
@@ -29,7 +29,7 @@ def main(arguments):
             for author in author_source:
                 print(author)
 
-    if arguments['option'] == 'p':
+    elif arguments['option'] == 'p':
         if 'string' in arguments:
             booksource = datasource.books(arguments["string"], "year")
             for book in booksource: 
@@ -39,7 +39,7 @@ def main(arguments):
             for book in booksource: 
                 print(book)
 
-    if arguments['option'] == 'y':
+    elif arguments['option'] == 'y':
 
         if 'year1' in arguments:
             if 'year2' in arguments:
