@@ -1,7 +1,7 @@
 import sys
 from booksdatasource import *
+"""books.py by Elek Thomas-Toth and Ryan Dunn 9-29-22"""
 
-"""books.py by Elek Thomas-Toth and Ryan Dunn  9-29-22"""
 def main(arguments):
 
     datasource = BooksDataSource('tinybooks.csv')
@@ -54,7 +54,7 @@ def main(arguments):
                     print(book)
         else:
             if 'year2' in arguments:
-                booksource = datasource.books_between_years(arguments['year2'])
+                booksource = datasource.books_between_years(None, arguments['year2'])
                 for book in booksource: 
                     print(book)
             else:
@@ -63,15 +63,11 @@ def main(arguments):
                     print(book)
 
 
-
-
-
 def usage_statement():
     statement = f'Usage: book searching of various forms\n'
 
     with open("usage.txt") as help:
-        helpDoc = csv.reader(help)
-    return statement
+        print(help.read())
 
 def parse_command_line():
     arguments = {}
