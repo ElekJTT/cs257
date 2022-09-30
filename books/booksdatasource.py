@@ -28,14 +28,14 @@ class Author:
         return False
 
     def __str__(self):
-        return
+        return self.given_name + " " + self.surname
 
 class Book:
     def __init__(self, title='', publication_year=None, authors=[]):
         ''' Note that the self.authors instance variable is a list of
             references to Author objects. '''
         self.title = title
-        self.publication_year = publication_year
+        self.publication_year = int(publication_year)
         self.authors = authors
 
     def __eq__(self, other):
@@ -51,14 +51,14 @@ class Book:
         return False
 
     def __str__(self):
-        return
+        return self.title
 
 
 class BooksDataSource: #Not for user to use. There is a difference between user typing stuff to command line interface. 
     def __init__(self, books_csv_file_name):
         self.bookList = []
 
-        self.authors = {
+        self.authorsDict = {
 
         }
 
@@ -74,7 +74,7 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
                 for item in authorSplit:
                     master_string_split = item.split("(")
                     full_name = master_string_split[0].strip()
-                    if full_name not in self.authors:
+                    if full_name not in self.authorsDict:
                         author_given = full_name[0].split()[0]
                         author_last = full_name[0].split()[-1]
 
@@ -85,11 +85,11 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
                         death_year = date_split[1]
 
                         new_author = Author(author_last, author_given, birth_year, death_year)                        
-                        self.authors[full_name] = new_author
+                        self.authorsDict[full_name] = new_author
 
                         self.author_objects.append(new_author)
                     else: 
-                        self.author_objects.append(self.authors[full_name])
+                        self.author_objects.append(self.authorsDict[full_name])
 
                 newBook = Book(row[0], row[1], self.author_objects)
                 self.bookList.append(newBook)
@@ -121,7 +121,7 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
 
         authors_to_print = []
         for author in sorted(self.author_objects):
-            if search_text in author.full_name:
+            if search_text in author.given_name or search_text in author.surname:
                 authors_to_print.append(author)
 
         return [authors_to_print]
@@ -155,7 +155,10 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
                 if search_text in book.title:
                     books_to_print.append(book)
 
-        return [books_to_print]
+        if len(books_to_print) < 1:
+            return None
+        else:
+            return books_to_print
 
         
 
@@ -174,6 +177,10 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
             should be included.
         '''
         books_between_years = []
+        if start_year != None:
+            start_year = int(start_year)
+        if end_year != None:
+            end_year = int(end_year)
 
         if start_year == None and end_year == None:
             return self.sort_books_by_year(self.bookList)
@@ -185,12 +192,12 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
 
         elif end_year == None:
             for book in sorted(self.bookList):
-                if book.publication_year >= start_year:
+                if book.publication_year >= int(start_year):
                     books_between_years.append(book)
 
         else:
             for book in sorted(self.bookList):
-                if book.publication_year >= start_year and book.publication_year <= end_year:
+                if book.publication_year >= int(start_year) and book.publication_year <= int(end_year):
                     books_between_years.append(book)
 
         return self.sort_books_by_year(books_between_years)

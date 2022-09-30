@@ -5,16 +5,18 @@ def main(arguments):
 
     datasource = BooksDataSource('books1.csv')
 
-    print(usage_statement)
-
     if arguments['option'] == 'h':
-        print(usage_statement)
+        print(usage_statement())
 
     if arguments['option'] == 'b':
         if 'string' in arguments:
-            print(datasource.books(), arguments['string'])
+            booksource = datasource.books(arguments['string'])
+            for book in booksource:
+                print(book)
         else:
-            print(datasource.books())
+            booksource = datasource.books()
+            for item in booksource:
+                print(item)
 
     if arguments['option'] == 'a':
         if 'string' in arguments:
@@ -74,7 +76,7 @@ def parse_command_line():
         else:
             arguments['option'] = 'b'
 
-        if '-' not in sys.argv[-1]:
+        if '-' not in sys.argv[-1] and 'books.py' not in sys.argv[-1]:
             arguments['string'] = sys.argv[-1]           
     
     main(arguments)

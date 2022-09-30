@@ -17,7 +17,7 @@ class BooksDataSourceTester(unittest.TestCase):
     def test_unique_author(self):
         authors = self.data_source.authors('Pratchett')
         self.assertTrue(len(authors) == 1)
-        self.assertTrue(authors[0] == Author('Pratchett', 'Terry'))
+        self.assertTrue(authors[0] == Author('Pratchett', 'Terry',1800,3232))
 
     def test_all_books(self):
         tiny_data_source = BooksDataSource('tinybooks.csv')
@@ -48,9 +48,9 @@ class BooksDataSourceTester(unittest.TestCase):
         tiny_data_source = BooksDataSource('tinybooks.csv')
         authors = tiny_data_source.authors()
         self.assertTrue = (len(authors) == 3) 
-        self.assertTrue(authors[0].given_name == 'Jane Austen')
-        self.assertTrue(authors[1].given_name == 'Neil Gaiman')
-        self.assertTrue(authors[2].given_name == 'Herman Melville')
+        self.assertEqual(authors[0].given_name == 'Jane Austen')
+        self.assertEqual(authors[1].given_name == 'Neil Gaiman')
+        self.assertEqual(authors[2].given_name == 'Herman Melville')
    
     def test_search_authors(self):
         tiny_data_source = BooksDataSource('tinybooks.csv')
@@ -60,6 +60,7 @@ class BooksDataSourceTester(unittest.TestCase):
         self.assertEqual(authors[0] == "Jane Austen")
 
     def test_empty_search_authors(self):
+        tiny_data_source = BooksDataSource("tinybooks.csv")
         authors = tiny_data_source.authors("Janet Boston")
         self.assertIsNone(authors)
  
@@ -82,7 +83,7 @@ class BooksDataSourceTester(unittest.TestCase):
     def test_no_date_books_between_years(self):
         tiny_data_source = BooksDataSource('tinybooks.csv')
         books  = tiny_data_source.books_between_years()
-        self.assertEqual(len(books) == 3)
+        self.assertTrue(len(books) == 3)
         self.assertTrue(books[0].title == 'Emma')
         self.assertTrue(books[1].title == 'Omoo')
         self.assertTrue(books[2].title == 'Neverwhere')
