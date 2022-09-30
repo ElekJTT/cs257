@@ -184,7 +184,7 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
             for item in self.bookList:
                 books_between_years.append(item)
 
-            return self.sort_books_by_year(books_between_years)
+            return self.sort_books_by_year(sorted(books_between_years))
 
         elif start_year == None:
             for book in sorted(self.bookList):

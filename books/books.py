@@ -12,12 +12,14 @@ def main(arguments):
     elif arguments['option'] == 'b':
         if 'string' in arguments:
             booksource = datasource.books(arguments['string'])
-            for book in booksource:
-                print(book)
+            if booksource != None:
+                for book in booksource:
+                    print(book)
         else:
             booksource = datasource.books()
-            for book in booksource:
-                print(book)
+            if booksource != None:
+                for book in booksource:
+                    print(book)
 
     elif arguments['option'] == 'a':
         if 'string' in arguments:
@@ -46,12 +48,14 @@ def main(arguments):
                 if arguments['year1'] > arguments['year2']:
                     raise Exception("Start date cannot be after end date")
                 booksource = datasource.books_between_years(arguments['year1'], arguments['year2'])
-                for book in booksource:
-                    print(book)
+                if booksource != None:
+                    for book in booksource:
+                        print(book)
             else:
                 booksource = datasource.books_between_years(arguments['year1'])
-                for book in booksource: 
-                    print(book)
+                if booksource != None:
+                    for book in booksource: 
+                        print(book)
         else:
             if 'year2' in arguments:
                 booksource = datasource.books_between_years(None, arguments['year2'])
@@ -89,7 +93,7 @@ def parse_command_line():
 
             if len(sys.argv) == 4:
                 arguments['year2'] = sys.argv[3]
-
+            break
 
         else:
             arguments['option'] = 'b'
