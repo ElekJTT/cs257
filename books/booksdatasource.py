@@ -9,6 +9,26 @@
 
 import csv
 
+
+
+def sort_books_by_year(books):
+
+    for step in range(1, len(books)):
+        key = books[step].publication_year
+        j = step - 1
+        
+        # Compare key with each element on the left of it until an element smaller than it is found
+        # For descending order, change key<array[j] to key>array[j].        
+        while j >= 0 and key < books[j].publication_year:
+            books[j + 1] = books[j]
+            j = j - 1
+
+            
+        # Place key at after the element just smaller than it.
+        books[j + 1].publication_year = key
+
+    return books
+
 class Author:
     def __init__(self, surname='', given_name='', birth_year=None, death_year=None):
         self.surname = surname
@@ -153,7 +173,7 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
 
         else:
 
-            for book in self.sort_books_by_year(sorted(self.bookList)):
+            for book in sort_books_by_year(sorted(self.bookList)):
                 if search_text.lower() in book.title.lower():
                     books_to_print.append(book)
 
@@ -161,7 +181,8 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
             return None
         else:
             return books_to_print
-
+    def key_for_book(self, book):
+        return (book.publication_year, book.title)
     def books_between_years(self, start_year=None, end_year=None):
         ''' Returns a list of all the Book objects in this data source whose publication
             years are between start_year and end_year, inclusive. The list is sorted
@@ -184,7 +205,7 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
             for item in self.bookList:
                 books_between_years.append(item)
 
-            return self.sort_books_by_year(sorted(books_between_years))
+            return sorted(books_between_years, key=self.key_for_book)
 
         elif start_year == None:
             for book in sorted(self.bookList):
@@ -203,26 +224,7 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
 
         if len(books_between_years) < 1:
             return None
-        return self.sort_books_by_year(sorted(books_between_years))
-
-
-    def sort_books_by_year(self, books):
-
-        for step in range(1, len(books)):
-            key = books[step].publication_year
-            j = step - 1
-            
-            # Compare key with each element on the left of it until an element smaller than it is found
-            # For descending order, change key<array[j] to key>array[j].        
-            while j >= 0 and key < books[j].publication_year:
-                books[j + 1].publication_year = books[j].publication_year
-                j = j - 1
-
-            
-            # Place key at after the element just smaller than it.
-            books[j + 1].publication_year = key
-
-        return books
+        return sorted(books_between_years, key=self.key_for_book)
 
 
 if __name__ == "__main__":
