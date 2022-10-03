@@ -2,23 +2,26 @@ Ryan Dunn and Elek Thomas-Toth usage.txt
 9-19-22
 
 NAME
-search - search through book files
+books - search through book files
 
 SYNOPSIS
 
-	python3 search.py [Option]... <String>
-	python3 search.py year <year1> <year2>
+	python3 books.py [Option]... <String>
+	python3 books.py year <year1> <year2>
 
 
 DESCRIPTION
 	By default prints a list of books whose titles contain the string case insentive. Sorted alphabetically by title. 
 
-	-a , --author
+	-a , --author #Returning books, 
 		prints a list of authors whose names contain the string, case insenstive. 
-	-y , --year [Start Year] [End Year]
+	-y , --year [Start Year] [End Year] #Specify in quotes? See years next to name. 
 		prints a list of books published between years A and B, inclusive.
 	-h, --help
 		gives a list of commands you can use with our program. 
-	-p, --publication
+	-p, --publication  # Not working! 
 		sorts the list by first by publication year, then alphabetically.
 
+Notes: 
+
+Make sure it is case insensitive.
