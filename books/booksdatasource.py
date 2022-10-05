@@ -86,7 +86,6 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
 
         #How do we deal with middle names?
         with open(books_csv_file_name, 'r') as books:
-            
             booksReader = csv.reader(books)
             for row in booksReader: 
                 book_instance_authors = []
@@ -110,6 +109,8 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
 
                         book_instance_authors.append(new_author)
                         self.author_objects.append(new_author)
+                    else: 
+                        book_instance_authors.append(self.authorsDict[full_name])
 
                 newBook = Book(row[0].strip(), row[1].strip(), book_instance_authors)
                 self.bookList.append(newBook)

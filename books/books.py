@@ -29,7 +29,7 @@ def main(arguments):
                 booksource = datasource.books()
                 for book in booksource:
                     if author in book.authors:
-                        print(book) 
+                        print("\t",  book) 
         else:
             author_source = datasource.authors()
             for author in author_source:
