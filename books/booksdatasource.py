@@ -160,7 +160,7 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
         '''
 
         if search_text == None:
-            return sorted(self.bookList)
+            return sorted(self.bookList, key=self.key_for_book)
 
         books_to_print = []
 
