@@ -71,7 +71,7 @@ class Book:
         return False
 
     def __str__(self):
-        return self.title
+        return self.title + " | " + str(self.publication_year)
 
 
 class BooksDataSource: #Not for user to use. There is a difference between user typing stuff to command line interface. 
@@ -107,8 +107,6 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
                         self.authorsDict[full_name] = new_author
 
                         self.author_objects.append(new_author)
-                    else: 
-                        self.author_objects.append(self.authorsDict[full_name])
 
                 newBook = Book(row[0].strip(), row[1].strip(), self.author_objects)
                 self.bookList.append(newBook)
@@ -172,17 +170,19 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
                     books_to_print.append(book)
 
         else:
-
-            for book in sort_books_by_year(sorted(self.bookList)):
+            newList = sorted(self.bookList, key = self.key_for_book)
+            for book in newList:
                 if search_text.lower() in book.title.lower():
                     books_to_print.append(book)
 
         if len(books_to_print) < 1:
             return None
         else:
-            return books_to_print
+            return sorted(books_to_print, key=self.key_for_book)
+
     def key_for_book(self, book):
         return (book.publication_year, book.title)
+
     def books_between_years(self, start_year=None, end_year=None):
         ''' Returns a list of all the Book objects in this data source whose publication
             years are between start_year and end_year, inclusive. The list is sorted

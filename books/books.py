@@ -4,7 +4,7 @@ from booksdatasource import *
 
 def main(arguments):
 
-    datasource = BooksDataSource('tinybooks.csv')
+    datasource = BooksDataSource('books1.csv')
 
     if arguments['option'] == 'h':
         usage_statement()
@@ -82,10 +82,13 @@ def parse_command_line():
     for option in sys.argv:
         if option == '-a' or option == '--author':
             arguments['option'] = 'a'
+            break
         elif option == '-p' or option == '--publication':
             arguments['option'] = 'p'
+            break
         elif option == '-h' or option == '--help':
             arguments['option'] = 'h'
+            break
         elif option == '-y' or option == '--year':
             arguments['option'] = 'y'
             if len(sys.argv)>= 3:
@@ -98,7 +101,7 @@ def parse_command_line():
         else:
             arguments['option'] = 'b'
 
-        if '-' not in sys.argv[-1] and 'books.py' not in sys.argv[-1]:
+    if '-' not in sys.argv[-1] and 'books.py' not in sys.argv[-1]:
             arguments['string'] = sys.argv[-1]           
     
     main(arguments)
