@@ -24,16 +24,20 @@ def main(arguments):
     elif arguments['option'] == 'a':
         if 'string' in arguments:
             author_source = datasource.authors(arguments['string'])
-            for author in author_source:
+            for author in sorted(author_source):
                 print(author)
                 booksource = datasource.books()
-                for book in booksource:
+                for book in sorted(booksource):
                     if author in book.authors:
                         print("\t",  book) 
         else:
             author_source = datasource.authors()
-            for author in author_source:
+            for author in sorted(author_source):
                 print(author)
+                booksource = datasource.books()
+                for book in sorted(booksource):
+                    if author in book.authors:
+                        print("\t",  book) 
 
     elif arguments['option'] == 'p':
         if 'string' in arguments:
@@ -50,13 +54,18 @@ def main(arguments):
 
         if 'year1' in arguments:
             if 'year2' in arguments:   
-                if arguments['year1'] != None:
-                    if arguments['year1'] > arguments['year2']:
-                        raise Exception("Start date cannot be after end date")
-                booksource = datasource.books_between_years(arguments['year1'], arguments['year2'])
-                if booksource != None:
-                    for book in booksource:
-                        print(book)
+                if arguments['year1'] == "None":
+                    booksource = datasource.books_between_years(None, arguments['year2'])
+                    if booksource != None:
+                        for book in booksource:
+                            print(book)                    
+                elif arguments['year1'] > arguments['year2']:
+                    raise Exception("Start date cannot be after end date")
+                else:
+                    booksource = datasource.books_between_years(arguments['year1'], arguments['year2'])
+                    if booksource != None:
+                        for book in booksource:
+                            print(book)
             else:
                 booksource = datasource.books_between_years(arguments['year1'])
                 if booksource != None:

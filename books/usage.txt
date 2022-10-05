@@ -13,15 +13,12 @@ SYNOPSIS
 DESCRIPTION
 	By default prints a list of books whose titles contain the string case insentive. Sorted alphabetically by title. 
 
-	-a , --author #Returning books, 
+	-a , --author 
 		prints a list of authors whose names contain the string, case insenstive. 
-	-y , --year [Start Year] [End Year] #Specify in quotes? See years next to name. 
-		prints a list of books published between years A and B, inclusive.
+	-y , --year [Start Year] [End Year] 
+		prints a list of books published between years A and B, inclusive. To only enter end year, enter None for start year.
 	-h, --help
 		gives a list of commands you can use with our program. 
-	-p, --publication  # Not working! 
+	-p, --publication 
 		sorts the list by first by publication year, then alphabetically.
 
-Notes: 
-
-Make sure it is case insensitive.
