@@ -86,8 +86,10 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
 
         #How do we deal with middle names?
         with open(books_csv_file_name, 'r') as books:
+            
             booksReader = csv.reader(books)
             for row in booksReader: 
+                book_instance_authors = []
                 authorSplit = row[2].replace(" and ", ",").split(", ")
   
                 for item in authorSplit:
@@ -106,9 +108,10 @@ class BooksDataSource: #Not for user to use. There is a difference between user 
                         new_author = Author(author_last, author_given, birth_year, death_year)                        
                         self.authorsDict[full_name] = new_author
 
+                        book_instance_authors.append(new_author)
                         self.author_objects.append(new_author)
 
-                newBook = Book(row[0].strip(), row[1].strip(), self.author_objects)
+                newBook = Book(row[0].strip(), row[1].strip(), book_instance_authors)
                 self.bookList.append(newBook)
 
         ''' The books CSV file format looks like this:
