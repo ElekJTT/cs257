@@ -4,7 +4,7 @@ from booksdatasource import *
 
 def main(arguments):
 
-    datasource = BooksDataSource('books1.csv')
+    datasource = BooksDataSource('tinybooks.csv')
 
     if arguments['option'] == 'h':
         usage_statement()
