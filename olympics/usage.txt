@@ -1,0 +1,25 @@
+Elek Thomas-Toth usage.txt
+
+NAME
+olympics - gives data about the olympics
+
+SYNOPSIS
+
+	python3 olympics.py [Option] [String]
+
+
+DESCRIPTION
+	By default print out all NOCs and how many gold medals they have won. Sorted by decreasing number of gold medals
+
+	-a, --athletes <NOC>
+        prints the names of all athletes from the specified NOC
+
+    -l, --list
+        prints a list of all NOCs and how many gold medals they have won. Sorted by decreasing number of gold medals.
+        No option input will use this command by default
+		 
+    -w, --winningest <event>
+        prints a list of all athletes who have at least 1 gold medal in the specified event. Sorted by decreasing number of gold medals
+
+	-h, --help
+		gives a list of commands you can use with our program. 
