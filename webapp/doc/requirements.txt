@@ -1,0 +1,26 @@
+Elek Thomas-Toth and Ariana Borlak
+
+Description of data:
+
+A list of the top 100 songs from each year 1964-2015 with their rank, the artist, the year it was published and the lyrics of the song. Obtained from the billboard_lyrics_1964-2015.csv file in https://github.com/walkerkq/musiclyrics.
+
+User Stories:
+
+User 1: Someone who heard some lyrics from a song and wants to look it up to find the name of the song
+
+Implementation: Have a search songs by lyrics function that searches for songs that contain the specified string
+
+User 2: Someone who has 1 song by an artist that they really like and wants to find more songs by that artist
+
+Implementation: Be able to click on an artist and get to an artists page where they can see all of their songs. Have author objects linked to songs in a linking table. 
+
+User 3: Someone who is looking to see the changes in lyric themes in popular music over the years.
+
+Implementation: List the most common lyrics in songs for each year in the dataset.
+
+User 4: Someone who wants to listen to the top 10 songs from every year.
+
+Implementation: Display rankings of the top songs for every year in order of rank, expandable up to the top 100 songs. The user can click on the song title or artist to view those objects. Once an object is clicked, a sidebar of the rankings will be displayed for the user to be able to continue exploring other songs in the rankings.
+
+Wireframe:
+https://balsamiq.cloud/si4sw23/pant9sd
