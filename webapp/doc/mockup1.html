@@ -10,20 +10,46 @@
 <body>
     <h1><a class="header" href="#home">Billboard Top 100</a></h1>
     <div class="topnav header">
+        <div class="dropdown">
+            <button onlcick="myFunction()" class="dropbtn">Years</button>
+            <div id="YearDropdown" class="dropdown-content">
+                <a href="#">1960's</a>
+                <a href="#">1970's</a>
+                <a href="#">1980's</a>
+            </div>
+        </div>
         <input type="text" placeholder="Search..">
         <div class="dropdown">
-            <button onclick="myFunction()" class="dropbtn">Artists/Songs/Lyrics</button>
+            <button onclick="myFunction()" class="dropbtn">Search by Artists/Songs/Lyrics</button>
             <div id="myDropdown" class="dropdown-content">
               <a href="#">Artists</a>
               <a href="#">Songs</a>
               <a href="#">Lyrics</a>
             </div>
-          </div>
+        </div>
     </div>
 
     <div class="container">
-        <h3>Top 5 Artists of the year</h3>
-        <h2>Billboard's top 100 songs of the year</h2>
+        <div class="left">
+            <h2>Top 5 Artists of the year</h2>
+            
+            <p><a href="#TaylorSwift">Taylor Swift</a></p>
+            <p><a href="#Migos">Migos</a></p>
+            <p><a href="#DavidBowie">David Bowie</a></p>
+            <p><a href="#FountainsofWayne">Fountains of Wayne</a></p>
+            <p><a href="#DOMIandJDBeck">DOMI and JD Beck</a></p>
+        </div>
+        <div class="mid">
+            <h2>Billboard's top 100 songs of the year</h2>
+            <ol>
+                <li>Anti Hero by Taylor Swift</li>
+
+
+
+
+
+            </ol>
+        </div>
     </div>
 
 

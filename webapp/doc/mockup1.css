@@ -49,17 +49,20 @@
     background-color: blue;
 }
 
-.main-column{
-    text-align: center;
-}
-
-.left-column{
-    text-align: center;
-}
-
 .container{
     display: flex;
     justify-content: space-between;
     height: 500px;
     width: 100%;
+}
+
+.left{
+    background-color: white;
+    width: 40%;
+    
+}
+
+.mid{
+    background-color: yellow;
+    width: 60%;
 }
