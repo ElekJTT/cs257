@@ -42,11 +42,23 @@
   /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
   .show {display:block;}
 
+
+a:link{
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+
 .header{
     text-align: center;
     display: block;
-    color: black;
-    background-color: blue;
+    color: white;
+    background-color: black;
+    margin-top: 0%;
+    padding-top: 0%;
 }
 
 .container{
@@ -54,6 +66,7 @@
     justify-content: space-between;
     height: 500px;
     width: 100%;
+
 }
 
 .left{
@@ -65,4 +78,5 @@
 .mid{
     background-color: yellow;
     width: 60%;
+
 }
