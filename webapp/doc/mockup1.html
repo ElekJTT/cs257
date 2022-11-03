@@ -8,19 +8,37 @@
     <link rel="stylesheet" type="text/css" href="mockup1.css" />
 </head>
 <body>
-    <h1><a class="header" href="#home">Billboard Top 100</a></h1>
-    <div class="topnav header">
+    <h1><a class="menu-bar" href="#home">Billboard Top 100</a></h1>
+    <div class="menu-bar">
         <div class="dropdown">
-            <button onlcick="myFunction()" class="dropbtn">Years</button>
-            <div id="YearDropdown" class="dropdown-content">
-                <a href="#">1960's</a>
-                <a href="#">1970's</a>
-                <a href="#">1980's</a>
+            <button class="dropbtn">Years</button>
+            <div id="DecadeDropdown" class="dropdown-content">
+                <ul>
+                    <li>1960's ></li>
+                        
+                        <ul class="decade">
+                            <li><a href="1960">1960</a></li>
+                            <li><a href="1961">1961</a></li>
+                            <li><a href="1962">1962</a></li>
+                            <li><a href="1963">1963</a></li>
+                            <li><a href="1964">1964</a></li>
+                            <li><a href="1965">1965</a></li>
+                            <li><a href="1966">1966</a></li>
+                            <li><a href="1967">1967</a></li>
+                            <li><a href="1968">1968</a></li>
+                            <li><a href="1969">1969</a></li>
+                        </ul>
+                    <li>1970's ></li>
+                    <li>1980's ></li>
+                    <li>1990's ></li>
+                    <li>2000's ></li>
+                    <li>2010's ></li>
+                </ul>
             </div>
         </div>
         <input type="text" placeholder="Search..">
         <div class="dropdown">
-            <button onclick="myFunction()" class="dropbtn">Search by Artists/Songs/Lyrics</button>
+            <button class="dropbtn">Search for Artists</button>
             <div id="myDropdown" class="dropdown-content">
               <a href="#">Artists</a>
               <a href="#">Songs</a>
@@ -29,25 +47,30 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="left">
+    <div class="content">
+
+        <div class="left-content">
             <h2>Top 5 Artists of the year</h2>
-            
+
             <p><a href="#TaylorSwift">Taylor Swift</a></p>
             <p><a href="#Migos">Migos</a></p>
             <p><a href="#DavidBowie">David Bowie</a></p>
             <p><a href="#FountainsofWayne">Fountains of Wayne</a></p>
             <p><a href="#DOMIandJDBeck">DOMI and JD Beck</a></p>
         </div>
-        <div class="mid">
+        <div class="right-content">
             <h2>Billboard's top 100 songs of the year</h2>
             <ol>
-                <li>Anti Hero by Taylor Swift</li>
-
-
-
-
-
+                <li><a href="#">Anti Hero</a> by <a href="#">Taylor Swift</a></li>
+                <li><a href="#">Mexican Wine</a> by <a href="#">Fountains of Wayne</a></li>
+                <li><a href="#">Money for Nothin'</a> by <a href="#">Dire Straits</a></li>
+                <li><a href="#">Corpus Callosum</a> by <a href="#">Polyrythmics</a></li>
+                <li><a href="#">Moondance</a> by <a href="#">Van Morrison</a></li>
+                <li><a href="#">Donna Lee</a> by <a href="#">Jaco Pastorius</a></li>
+                <li><a href="#">Mary Jane's Last Dance</a> by <a href="#">Tom Petty and the Heartbreakers</a></li>
+                <li><a href="#">(Don't Fear) The Reaper</a> by <a href="#">Blue Oyster Cult</a></li>
+                <li><a href="#">Last Friday Night (T.G.I.F)</a> by <a href="#">Katy Perry</a></li>
+                <li><a href="#">Istanbul (Not Constantinople)</a> by <a href="#">They Might be Giants</a></li>
             </ol>
         </div>
     </div>

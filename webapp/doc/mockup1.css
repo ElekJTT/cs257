@@ -8,7 +8,7 @@
   }
   
   /* Dropdown button on hover & focus */
-  .dropbtn:hover, .dropbtn:focus {
+  .dropbtn:hover, .dropbtn:focus{
     background-color: #2980B9;
   }
   
@@ -28,6 +28,11 @@
     z-index: 1;
   }
   
+  .dropdown:hover .dropdown-content{
+    display: block;
+    position: absolute;
+  }
+  
   /* Links inside the dropdown */
   .dropdown-content a {
     color: black;
@@ -43,6 +48,8 @@
   .show {display:block;}
 
 
+
+
 a:link{
     text-decoration: none;
 }
@@ -51,32 +58,42 @@ a:hover{
     text-decoration: underline;
 }
 
+body{
+    background-image: url(tswift.jpg);
+}
 
-.header{
+.menu-bar{
     text-align: center;
     display: block;
     color: white;
-    background-color: black;
     margin-top: 0%;
     padding-top: 0%;
 }
 
-.container{
+.content{
     display: flex;
     justify-content: space-between;
     height: 500px;
     width: 100%;
+    color: white;
 
 }
 
-.left{
-    background-color: white;
+.left-content{
     width: 40%;
+    border-right: 1px solid white;
+    height: 300px;
+    margin: 5px;
     
 }
 
-.mid{
-    background-color: yellow;
+.right-content{
     width: 60%;
+    margin: 5px;
+    line-height: 50px;
+}
+
+.right-content h2{
+    font-size: 140%;
 
 }
