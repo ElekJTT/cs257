@@ -8,14 +8,14 @@
     <link rel="stylesheet" type="text/css" href="mockup1.css" />
 </head>
 <body>
-    <h1><a class="menu-bar" href="#home">Billboard Top 100</a></h1>
     <div class="menu-bar">
+        <h1><a id="title" href="#home">Billboard Top 100</a></h1>
         <div class="dropdown">
             <button class="dropbtn">Years</button>
             <div id="DecadeDropdown" class="dropdown-content">
-                <ul class="decade">
-                    <li>1960's ></li>
-                        <div class="year">
+                <ul>
+                    <li class="hoverable">1960's ></li>
+                        <div id="Year">
                         <ul>
                             <li><a href="1960">1960</a></li>
                             <li><a href="1961">1961</a></li>
@@ -30,18 +30,19 @@
 
                         </ul>
                         </div>
-                    <li>1970's ></li>
-                    <li>1980's ></li>
-                    <li>1990's ></li>
-                    <li>2000's ></li>
-                    <li>2010's ></li>
+                    <li class="hoverable">1970's ></li>
+                    <li class="hoverable">1980's ></li>
+                    <li class="hoverable">1990's ></li>
+                    <li class="hoverable">2000's ></li>
+                    <li class="hoverable">2010's ></li>
                 </ul>
             </div>
         </div>
         <input type="text" placeholder="Search..">
+
         <div class="dropdown">
             <button class="dropbtn">Search for Artists</button>
-            <div id="myDropdown" class="dropdown-content">
+            <div id="SearchDropDown" class="dropdown-content">
               <a href="#">Artists</a>
               <a href="#">Songs</a>
               <a href="#">Lyrics</a>

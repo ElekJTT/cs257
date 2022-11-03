@@ -7,77 +7,80 @@
     cursor: pointer;
   }
   
-  /* Dropdown button on hover & focus */
-  .dropbtn:hover, .dropbtn:focus{
-    background-color: #2980B9;
-  }
-  
-  /* The container <div> - needed to position the dropdown content */
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  /* Dropdown Content (Hidden by Default) */
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    color: black;
-  }
-  
-  .dropdown:hover .dropdown-content{
-    display: block;
-    position: absolute;
-  }
-  
-  /* Links inside the dropdown */
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    float: left;
-  }
-  
-  .year{
-    display: none;
-  }
+.dropbtn:hover, .dropbtn:focus{
+  background-color: #2980B9;
+}
 
-  .year ul{
-    line-height: normal;
-  }
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
 
-  .decade:hover .year{
-    display: inline-flex;
-    position: absolute;
-    margin-top: -30px;
-    margin-left: 140;
-    background-color: #f1f1f1;
-  }
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  color: black;
+}
 
-  .decade{
-    float: left;
-    margin-left: -35px;
-  }
+.dropdown:hover .dropdown-content{
+  display: block;
+  position: absolute;
+}
 
-  .dropdown-content ul{
-    list-style: none;
-  }
-  #DecadeDropdown{
-    float:left;
-    margin: 0pt;
-    padding: 0pt;
-    list-style: none;
-  }
-  /* Change color of dropdown links on hover */
-  .dropdown-content a:hover {background-color: #ddd;}
+.dropdown:hover #DecadeDropdown{
+  display: block;
+  position: absolute;
+}
+
+#year li{
+  display: none;
+  position: absolute;
+}
+
+#DecadeDropdown:hover #year{
+  display: block;
+  position: absolute;
+  margin-top: -30px;
+  margin-left: 140;
+  background-color: #f1f1f1;
+  width: max-content;
   
-  /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-  .show {display:block;}
+}
+
+
+.dropdown-content ul{
+  list-style: none;
+}
+#DecadeDropdown{
+  float:left;
+  padding: 12px 16px;
+  list-style: none;
+
+  display: none;
+  color: black;
+}
+
+#SearchDropDown{
+  float:left;
+  padding: 12px 16px;
+  list-style: none;
+  display: none;
+  color: black;
+}
+
+.dropdown:hover #SearchDropDown{
+  display: block;
+  position: absolute;
+}
+
+.hoverable:hover #Year{
+  display: block;
+  position: absolute;
+  }
 
 
 
