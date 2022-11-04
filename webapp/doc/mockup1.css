@@ -6,7 +6,7 @@
     border: none;
     cursor: pointer;
   }
-  
+
 .dropbtn:hover, .dropbtn:focus{
   background-color: #2980B9;
 }
@@ -26,7 +26,8 @@
   color: black;
 }
 
-.dropdown:hover .dropdown-content{
+/* .dropdown:hover .dropdown-content{ */
+.dropdown-content{
   display: block;
   position: absolute;
 }
@@ -36,19 +37,19 @@
   position: absolute;
 }
 
-#year li{
+#Year{
   display: none;
   position: absolute;
 }
 
-#DecadeDropdown:hover #year{
+.dropdown-content :hover #Year{
   display: block;
   position: absolute;
   margin-top: -30px;
   margin-left: 140;
   background-color: #f1f1f1;
   width: max-content;
-  
+
 }
 
 
@@ -77,13 +78,20 @@
   position: absolute;
 }
 
+.hoverable :hover #Year{
+  display: block;
+  position: absolute;
+  margin-top: -30px;
+  margin-left: 140;
+  background-color: #f1f1f1;
+  width: max-content;
+
+}
+
 .hoverable:hover #Year{
   display: block;
   position: absolute;
-  }
-
-
-
+}
 
 a:link{
     text-decoration: none;
@@ -119,7 +127,7 @@ body{
     border-right: 1px solid white;
     height: 300px;
     margin: 5px;
-    
+
 }
 
 .right-content{
