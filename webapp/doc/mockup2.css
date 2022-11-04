@@ -108,8 +108,7 @@ body{
 }
 
 .left-content{
-    width: 200px;
-    border-right: 1px solid white;
+    width: 33%;
     height: 300px;
     margin: 5px;
 
