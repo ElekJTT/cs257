@@ -26,31 +26,30 @@
   color: black;
 }
 
-/* .dropdown:hover .dropdown-content{ */
-.dropdown-content{
-  display: block;
-  position: absolute;
-}
 
 .dropdown:hover #DecadeDropdown{
   display: block;
   position: absolute;
 }
 
-#Year{
+#Year {
   display: none;
   position: absolute;
 }
 
-.dropdown-content :hover #Year{
+#Year a{
+  margin-left: 45px;
+}
+
+.dropdown-content:hover #Year{
   display: block;
   position: absolute;
-  margin-top: -30px;
-  margin-left: 140;
+  margin-top: -17px;
   background-color: #f1f1f1;
   width: max-content;
 
 }
+
 
 
 .dropdown-content ul{
@@ -78,20 +77,6 @@
   position: absolute;
 }
 
-.hoverable :hover #Year{
-  display: block;
-  position: absolute;
-  margin-top: -30px;
-  margin-left: 140;
-  background-color: #f1f1f1;
-  width: max-content;
-
-}
-
-.hoverable:hover #Year{
-  display: block;
-  position: absolute;
-}
 
 a:link{
     text-decoration: none;
@@ -123,7 +108,7 @@ body{
 }
 
 .left-content{
-    width: 40%;
+    width: 200px;
     border-right: 1px solid white;
     height: 300px;
     margin: 5px;
