@@ -3,22 +3,22 @@ Elek Thomas-Toth and Ariana Borlak
 Request:/
 Response: A JSON list of artists/songs for the most recent year in the database
 
-Request:/search/{{option}}/{{search_text}}
+Request:/search/<option>/<search_text>
 Response: Option can be artists, songs, or lyrics
     If the option is artists, return a JSON list containing artists whose names contain the search text
     If the option is songs, return a JSON list containing songs whose titles contain the search text
     If the option is lyrics, return a JSON list containing songs whose lyrics contain the search text
 
-Request:/year/{{year}}
-Response: A JSON list of the top 100 songs from the {{year}}
+Request:/year/<year>
+Response: A JSON list of the top 100 songs from the <year>
 
-Request: /artist/{{artist}}
-Response: A JSON list of songs by the {{artist}} sorted by year, newest to oldest
+Request: /artist/<artist>
+Response: A JSON list of songs by the <artist> sorted by year, newest to oldest
 
-Request: /artist/{{artist}}/song/{{song}}
+Request: /artist/<artist>/song/<song>
 Response: A JSON dictionary containing the following variables
  	Artist-- (string) the name of the artist
-  	Song-- (string) the name of the song
+  Song-- (string) the name of the song
 	Lyrics– (string) the lyrics of the song
 	Year– (int) the year the song made top 100
 	Rank– (int) the rank the song achieved
