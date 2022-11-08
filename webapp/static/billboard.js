@@ -41,14 +41,15 @@ function loadYearSongs() {
         let yearBody = '';
         for (let k = 0; k < songs.length; k++) {
             let song = songs[k];
-            yearBody += '<option value="' + song['id'] + '">'
-                                + song['surname'] + ', ' + song['given_name']
-                                + '</option>\n';
+            yearBody += '<li>>'
+                     + song['title'] + ' by' + song['artist_name']
+                     + ', rank ' + song['rank'] 
+                     + '</li>\n';
         }
 
-        let selector = document.getElementById('author_selector');
-        if (selector) {
-            selector.innerHTML = yearBody;
+        let list = document.getElementById('yearSongs');
+        if (list) {
+            list.innerHTML = yearBody;
         }
     })
 

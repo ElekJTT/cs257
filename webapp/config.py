@@ -1,3 +1,3 @@
 database = "billboard"
-user = "arianab"
-password = "sources"
+user = "elek"
+password = "honeycrisp"

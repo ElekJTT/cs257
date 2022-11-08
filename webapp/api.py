@@ -34,9 +34,9 @@ def get_songs_from_year(year):
     '''
     query = '''SELECT title, artist_name, rank
                FROM songs, artists, artists_songs, songs_years
-               WHERE year = %s
-               AND artists.id = songs_artists.artist_id
-               AND songs.id = songs_artists.song_id
+               WHERE year = 2015
+               AND artists.id = artists_songs.artist_id
+               AND songs.id = artists_songs.song_id
                AND songs.id = songs_years.song_id
                ORDER BY rank'''
 
