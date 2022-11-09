@@ -1,3 +1,7 @@
+# database = "billboard"
+# user = "elek"
+# password = "honeycrisp"
+
 database = "billboard"
-user = "elek"
-password = "honeycrisp"
+user = "arianab"
+password = "sources"

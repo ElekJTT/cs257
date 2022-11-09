@@ -41,9 +41,9 @@ function loadYearSongs() {
         let yearBody = '';
         for (let k = 0; k < songs.length; k++) {
             let song = songs[k];
-            yearBody += '<li>>'
-                     + song['title'] + ' by' + song['artist_name']
-                     + ', rank ' + song['rank'] 
+            yearBody += '<li>'
+                     + song['title'] + ' by ' + song['artist_name']
+                     + ', rank ' + song['rank']
                      + '</li>\n';
         }
 
