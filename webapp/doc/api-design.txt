@@ -9,7 +9,10 @@ Response: Option can be artists, songs, or lyrics
     If the option is songs, return a JSON list containing songs whose titles contain the search text
     If the option is lyrics, return a JSON list containing songs whose lyrics contain the search text
 
-Request:/year/<year>
+Request:/years
+Response: A JSON list of all the years in the database, descending order.
+
+Request:/years/<year>
 Response: A JSON list of the top 100 songs from the <year>
 
 Request: /artist/<artist>
@@ -22,4 +25,3 @@ Response: A JSON dictionary containing the following variables
 	Lyrics– (string) the lyrics of the song
 	Year– (int) the year the song made top 100
 	Rank– (int) the rank the song achieved
-

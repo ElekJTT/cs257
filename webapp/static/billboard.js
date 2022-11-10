@@ -7,6 +7,7 @@ window.onload = initialize;
 
 function initialize() {
     loadYearSongs();
+    loadYearsSelector();
     //
     // let element = document.getElementById('author_selector');
     // if (element) {
@@ -24,8 +25,32 @@ function getAPIBaseURL() {
     return baseURL;
 }
 
+function loadYearsSelector() {
+    let url = getAPIBaseURL() + '/years';
+
+    fetch(url, {method:'get'})
+
+    .then((response) => response.json())
+
+    .then(function(songs_years) {
+      let yearSelectorBody = '';
+      for (let i = 0; i < songs_years.length; i++) {
+          let year = songs_years[i];
+          yearSelectorBody += '<option value="' + year['year'] + '">';
+      }
+      let yearSelector = document.getElementById('year_selector');
+      if (yearSelector) {
+        yearSelector.innerHTML = yearSelectorBody;
+      }
+    })
+
+    .catch(function(error) {
+        console.log(error);
+    });
+}
+
 function loadYearSongs() {
-    let url = getAPIBaseURL() + '/year/<year>';
+    let url = getAPIBaseURL() + '/years/<year>';
 
     // Send the request to the books API /years/ endpoint
     fetch(url, {method: 'get'})

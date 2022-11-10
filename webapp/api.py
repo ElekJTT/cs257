@@ -2,7 +2,7 @@
     api.py
     Ariana Borlak, Elek Thomas-Toth
 
-    Tiny Flask API
+    Flask API
 '''
 import sys
 import flask
@@ -20,7 +20,30 @@ def get_connection():
                             user=config.user,
                             password=config.password)
 
-@api.route('/year/<year>')
+@api.route('/years')
+def get_years():
+    ''' Returns a list of all the years in the database
+    '''
+    query = '''SELECT DISTINCT year
+               FROM songs_years
+               ORDER BY year DESC
+            '''
+    year_list = []
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute(query, tuple())
+        for row in cursor:
+            year = {'year': row[0]}
+            year_list.append(year)
+            cursor.close()
+            connection.close()
+    except Exception as e:
+        print(e, file=sys.stderr)
+
+    return json.dumps(year_list)
+
+@api.route('/years/<year>')
 def get_songs_from_year(year):
     ''' Returns a list of all the songs for a particular year in our database.
 
