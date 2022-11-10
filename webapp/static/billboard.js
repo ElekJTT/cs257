@@ -9,9 +9,14 @@ function initialize() {
     loadYearSongs();
     loadYearsSelector();
     
-    let element = document.getElementById('Search_param');
-    if (element) {
-        element.onchange = onParameterChanged;
+    let parameters = document.getElementById('Search_param');
+    if (parameters) {
+        parameters.onchange = onParameterChanged;
+    }
+
+    let search = document.getElementById('Search_bar')
+    if (search) {
+        search.onsubmit = onSearch;
     }
 }
 
@@ -84,15 +89,27 @@ function loadYearSongs() {
     });
 }
 
+//makes it so the search parameters can be changed
 function onParameterChanged() {
     let element = document.getElementById('Search_param');
     if (!element) {
         return;
     }
     let search_parameter = element.value; 
-
     element.innerHTML(search_parameter)
+}
+
+function onSearch(){
+    let element = document.getElementById('Search_bar');
+    if(!element) {
+        return;
+    }
+    let search_text = element.value
+    let search_parameter = document.getElementById('Search_param').value
+
+    let url = getAPIBaseURL + '/' + search_parameter + '/' + search_text
+
+    window.location.href = url;
 
 
 }
-

@@ -119,7 +119,6 @@ def search_with_parameter(parameter, search_text):
         connection.close()
     except Exception as e:
         print(e, file=sys.stderr)
-
     return json.dumps(result_list)
 
 @api.route('/artist/<artist>')
