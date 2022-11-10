@@ -57,26 +57,102 @@ def get_songs_from_year(year):
 
     return json.dumps(song_list)
 
-# @api.route('/books/author/<author_id>')
-# def get_books_for_author(author_id):
-#     query = '''SELECT books.id, books.title, books.publication_year
-#                FROM books, authors, books_authors
-#                WHERE books.id = books_authors.book_id
-#                  AND authors.id = books_authors.author_id
-#                  AND authors.id = %s
-#                ORDER BY books.publication_year'''
-#     book_list = []
-#     try:
-#         connection = get_connection()
-#         cursor = connection.cursor()
-#         cursor.execute(query, (author_id,))
-#         for row in cursor:
-#             book = {'id':row[0], 'title':row[1], 'publication_year':row[2]}
-#             book_list.append(book)
-#         cursor.close()
-#         connection.close()
-#     except Exception as e:
-#         print(e, file=sys.stderr)
-#
-#     return json.dumps(book_list)
-#
+@api.route('/search/<parameter>/<search_text>')
+def search_with_parameter(parameter, search_text):
+    if parameter == "Artists":
+        query = '''SELECT artist_name FROM authors
+                   WHERE artist_name LIKE %s '''
+
+    elif parameter == "Songs":
+        query = '''SELECT title, artist_name
+                   FROM songs, artists, artists_songs
+                   WHERE songs.id = artists_songs.song_id
+                   AND artists.id = artists_songs.artist_id
+                   AND songs.title LIKE %s
+                '''
+
+    elif parameter == "Lyrics":
+        query = '''SELECT title, artist_name
+                   FROM songs, artists, artists_songs
+                   WHERE songs.id = artists_songs.song_id
+                   AND artists.id = artists_songs.artist_id
+                   AND songs.lyrics LIKE %s
+                '''
+    else:
+        return
+
+    result_list = []
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute(query, (search_text,))
+        for row in cursor:
+            if parameter == "Artist":
+                result = {'title':row[0], 'artist_name':row[1]}
+            else:
+                result = {'artist_name':row[0]}
+            result_list.append(result)
+        cursor.close()
+        connection.close()
+    except Exception as e:
+        print(e, file=sys.stderr)
+
+    return json.dumps(result_list)
+
+@api.route('/artist/<artist>')
+def get_artist_songs(artist_name):
+    query = '''SELECT title, rank, year
+               FROM songs, artists, artists_songs, songs_years
+               WHERE artist_name = %s
+               AND artists.id = artists_songs.artist_id
+               AND songs.id = artists_songs.song_id
+               AND songs.id = songs_years.song_id
+               ORDER BY rank'''
+
+    song_list = []
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute(query, (artist_name,))
+        for row in cursor:
+            song = {'title':row[0],
+                    'rank':row[1],
+                    'year':row[2]}
+            song_list.append(song)
+        cursor.close()
+        connection.close()
+    except Exception as e:
+        print(e, file=sys.stderr)
+
+    return json.dumps(song_list)
+
+@api.route('/artist/<artist>/song/<song>')
+def get_song_info(artist_name, title):
+
+    query = '''SELECT title, artist_name, year, rank, lyrics
+               FROM songs, artists, artists_songs, songs_years
+               WHERE title = %s
+               AND artist_name = %s
+               AND artists.id = artists_songs.artist_id
+               AND songs.id = artists_songs.song_id
+               AND songs.id = songs_years.song_id
+               ORDER BY rank'''
+
+    song_list = []
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute(query, (title, artist_name))
+        for row in cursor:
+            song = {'title':row[0],
+                    'artist_name':row[1],
+                    'year':row[2],
+                    'rank':row[3],
+                    'lyrics':row[4]}
+            song_list.append(song)
+        cursor.close()
+        connection.close()
+    except Exception as e:
+        print(e, file=sys.stderr)
+
+    return json.dumps(song_list)
