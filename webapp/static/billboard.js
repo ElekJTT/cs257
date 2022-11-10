@@ -8,11 +8,11 @@ window.onload = initialize;
 function initialize() {
     loadYearSongs();
     loadYearsSelector();
-    //
-    // let element = document.getElementById('author_selector');
-    // if (element) {
-    //     element.onchange = onAuthorsSelectionChanged;
-    // }
+    
+    let element = document.getElementById('Search_param');
+    if (element) {
+        element.onchange = onParameterChanged;
+    }
 }
 
 // Returns the base URL of the API, onto which endpoint
@@ -84,33 +84,15 @@ function loadYearSongs() {
     });
 }
 
-// function onAuthorsSelectionChanged() {
-//     let authorID = this.value;
-//     let url = getAPIBaseURL() + '/books/author/' + authorID;
-//
-//     fetch(url, {method: 'get'})
-//
-//     .then((response) => response.json())
-//
-//     .then(function(books) {
-//         let tableBody = '';
-//         for (let k = 0; k < books.length; k++) {
-//             let book = books[k];
-//             tableBody += '<tr>'
-//                             + '<td>' + book['title'] + '</td>'
-//                             + '<td>' + book['publication_year'] + '</td>'
-//                             + '</tr>\n';
-//         }
-//
-//         // Put the table body we just built inside the table that's already on the page.
-//         let booksTable = document.getElementById('books_table');
-//         if (booksTable) {
-//             booksTable.innerHTML = tableBody;
-//         }
-//     })
-//
-//     .catch(function(error) {
-//         console.log(error);
-//     });
-// }
+function onParameterChanged() {
+    let element = document.getElementById('Search_param');
+    if (!element) {
+        return;
+    }
+    let search_parameter = element.value; 
+
+    element.innerHTML(search_parameter)
+
+
+}
 
