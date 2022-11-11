@@ -18,6 +18,11 @@ function initialize() {
     if (search) {
         search.onsubmit = onSearch;
     }
+
+    let years = document.getElementById('year_selector');
+    if (years) {
+        years.onchange = onYearsSelected;
+    }
 }
 
 // Returns the base URL of the API, onto which endpoint
@@ -55,6 +60,24 @@ function loadYearsSelector() {
     .catch(function(error) {
         console.log(error);
     });
+}
+
+function onYearsSelected() {
+  let element = document.getElementById('year_selector');
+  if (!element) {
+    return;
+  }
+  let year = element.value;
+
+  location.href = getAPIBaseURL() + '/years/' + year;
+
+  fetch(location.href, {method: 'get'})
+
+  .then((response) => response.json())
+
+  .then(function(songs_years) {
+    let
+  })
 }
 
 function loadYearSongs() {

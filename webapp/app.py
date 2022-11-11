@@ -1,8 +1,6 @@
 '''
     app.py
     Ariana Borlak, Elek Thomas-Toth
-
-    A small Flask application
 '''
 import flask
 import argparse
@@ -15,8 +13,9 @@ app.register_blueprint(api.api, url_prefix='/api')
 def home():
     return flask.render_template('index.html')
 
-
-    
+@app.route('/years/<year>')
+def year_page(year):
+    return flask.render_template('year_page.html', year=year)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser('A billboard songs application, including API & DB')
