@@ -10,19 +10,21 @@
 </head>
 <body>
     <div class="menu-bar">
-        <h1><a id="title" href="#home">Billboard Top 100</a></h1>
+        <h1><a id="title" href="/">Billboard Top 100</a></h1>
         <div class="dropdown">
             <button class="dropbtn">Years<select id="year_selector"></select></button>
         </div>
-        <input type="text" placeholder="Search..">
+        <form>
+            <input id='Search_bar' type="text" placeholder="Search..">
+            <button type="submit">Submit</button>
+        </form>
 
         <div class="dropdown">
-            <button class="dropbtn">Search for Artists</button>
-            <div id="SearchDropDown" class="dropdown-content">
-              <a href="#">Artists</a>
-              <a href="#">Songs</a>
-              <a href="#">Lyrics</a>
-            </div>
+            <select id="Search_param">
+              <option value="1">Artists</option>
+              <option value="2">Songs</option>
+              <option value="3">Lyrics</option>
+            </select>
         </div>
     </div>
 

@@ -14,10 +14,15 @@ function initialize() {
         parameters.onchange = onParameterChanged;
     }
 
-    let search = document.getElementById('Search_bar')
-    if (search) {
-        search.onsubmit = onSearch;
+    let search_button = document.getElementById('Search_button')
+    if(search_button) {
+        search_button.onclick = onSearch;
     }
+
+    // let search_bar = document.getElementById('Search_bar')
+    // if(search_bar){
+    //     search_bar.onsubmit = onSearch;
+    // }
 
     let years = document.getElementById('year_selector');
     if (years) {
@@ -32,6 +37,14 @@ function getAPIBaseURL() {
                     + '//' + window.location.hostname
                     + ':' + window.location.port
                     + '/api';
+    return baseURL;
+}
+
+function getBaseURL() {
+    let baseURL = window.location.protocol
+                    + '//' + window.location.hostname
+                    + ':' + window.location.port
+                    + '/';
     return baseURL;
 }
 
@@ -69,19 +82,32 @@ function onYearsSelected() {
   }
   let year = element.value;
 
-  location.href = getAPIBaseURL() + '/years/' + year;
+  location.href = getBaseURL() + '/years/' + year;
 
   fetch(location.href, {method: 'get'})
 
   .then((response) => response.json())
 
   .then(function(songs_years) {
-    let
-  })
+  //     let yearsSelectedBody = ''
+  //     let yearSelected = songs_years[0];
+  //     yearsSelectedBody += '<li><a href="/' + songs_years['year'] + '">'
+  //                       + songs_years['year']
+  //                       + '</a></li>\n';
+  //
+  //     let selectYear = document.getElementById('selectYear')
+  //     if (selectYear) {
+  //       selectYear.innerHTML = yearsSelectedBody;
+  //     }
+  // }
+)
+  .catch(function(error) {
+      console.log(error);
+  });
 }
 
 function loadYearSongs() {
-    let url = getAPIBaseURL() + '/years/<year>';
+    let url = getAPIBaseURL() + '/years';
 
     // Send the request to the books API /years/ endpoint
     fetch(url, {method: 'get'})
@@ -122,20 +148,19 @@ function onParameterChanged() {
         return;
     }
     let search_parameter = element.value;
-    element.innerHTML(search_parameter)
+    element.innerHTML(search_parameter);
 }
 
 function onSearch(){
     let element = document.getElementById('Search_bar');
-    if(!element) {
+    if(!element.value) {
         return;
     }
-    let search_text = element.value
-    let search_parameter = document.getElementById('Search_param').value
+    let search_text = element.value;
+    let search_parameter = document.getElementById('Search_param').value;
 
-    let url = getAPIBaseURL + '/' + search_parameter + '/' + search_text
-
-    window.location.href = url;
+    let url = '' + getBaseURL() + 'search/' + search_parameter + '/' + search_text;
+    window.location.replace(url);
 
 
 }

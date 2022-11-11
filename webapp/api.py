@@ -84,14 +84,14 @@ def get_songs_from_year(year):
 def search_with_parameter(parameter, search_text):
     if parameter == "Artists":
         query = '''SELECT artist_name FROM authors
-                   WHERE artist_name LIKE %s '''
+                   WHERE artist_name ILIKE CONCAT('%%', '%s', '%%')  '''
 
     elif parameter == "Songs":
         query = '''SELECT title, artist_name
                    FROM songs, artists, artists_songs
                    WHERE songs.id = artists_songs.song_id
                    AND artists.id = artists_songs.artist_id
-                   AND songs.title LIKE %s
+                   AND songs.title ILIKE CONCAT('%%', '%s', '%%') 
                 '''
 
     elif parameter == "Lyrics":
@@ -99,7 +99,7 @@ def search_with_parameter(parameter, search_text):
                    FROM songs, artists, artists_songs
                    WHERE songs.id = artists_songs.song_id
                    AND artists.id = artists_songs.artist_id
-                   AND songs.lyrics LIKE %s
+                   AND songs.lyrics ILIKE CONCAT('%%', '%s', '%%') 
                 '''
     else:
         return
@@ -119,7 +119,12 @@ def search_with_parameter(parameter, search_text):
         connection.close()
     except Exception as e:
         print(e, file=sys.stderr)
-    return json.dumps(result_list)
+
+    if(result_list):
+        return json.dumps(result_list)
+    else:
+        result_list.append({'artist_name':'Miley Cyrus'})
+        return json.dumps(result_list)
 
 @api.route('/artist/<artist>')
 def get_artist_songs(artist_name):
