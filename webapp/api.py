@@ -36,8 +36,8 @@ def get_years():
         for row in cursor:
             year = {'year': row[0]}
             year_list.append(year)
-            cursor.close()
-            connection.close()
+        cursor.close()
+        connection.close()
     except Exception as e:
         print(e, file=sys.stderr)
 

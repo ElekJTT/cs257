@@ -8,7 +8,7 @@ window.onload = initialize;
 function initialize() {
     loadYearSongs();
     loadYearsSelector();
-    
+
     let parameters = document.getElementById('Search_param');
     if (parameters) {
         parameters.onchange = onParameterChanged;
@@ -41,10 +41,13 @@ function loadYearsSelector() {
       let yearSelectorBody = '';
       for (let i = 0; i < songs_years.length; i++) {
           let year = songs_years[i];
-          yearSelectorBody += '<option value="' + year['year'] + '">';
+          yearSelectorBody += '<option value="'+ year['year'] + '">'
+                           + year['year']
+                           + '</option>\n';
       }
       let yearSelector = document.getElementById('year_selector');
       if (yearSelector) {
+        let year_value = yearSelector.value;
         yearSelector.innerHTML = yearSelectorBody;
       }
     })
@@ -95,7 +98,7 @@ function onParameterChanged() {
     if (!element) {
         return;
     }
-    let search_parameter = element.value; 
+    let search_parameter = element.value;
     element.innerHTML(search_parameter)
 }
 
