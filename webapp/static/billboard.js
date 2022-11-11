@@ -19,6 +19,11 @@ function initialize() {
         search_button.onclick = onSearch;
     }
 
+    // let search_bar = document.getElementById('Search_bar')
+    // if(search_bar){
+    //     search_bar.onsubmit = onSearch;
+    // }
+
     let years = document.getElementById('year_selector');
     if (years) {
         years.onchange = onYearsSelected;
@@ -32,6 +37,14 @@ function getAPIBaseURL() {
                     + '//' + window.location.hostname
                     + ':' + window.location.port
                     + '/api';
+    return baseURL;
+}
+
+function getBaseURL() {
+    let baseURL = window.location.protocol
+                    + '//' + window.location.hostname
+                    + ':' + window.location.port
+                    + '/';
     return baseURL;
 }
 
@@ -69,7 +82,7 @@ function onYearsSelected() {
   }
   let year = element.value;
 
-  location.href = getAPIBaseURL() + '/years/' + year;
+  location.href = getBaseURL() + '/years/' + year;
 
   fetch(location.href, {method: 'get'})
 
@@ -133,7 +146,7 @@ function onSearch(){
     let search_text = element.value;
     let search_parameter = document.getElementById('Search_param').value;
 
-    let url = '' + getAPIBaseURL() + '/search/' + search_parameter + '/' + search_text;
+    let url = '' + getBaseURL() + 'search/' + search_parameter + '/' + search_text;
     window.location.replace(url);
 
 
