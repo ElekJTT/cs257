@@ -14,9 +14,9 @@ function initialize() {
         parameters.onchange = onParameterChanged;
     }
 
-    let search = document.getElementById('Search_bar')
-    if (search) {
-        search.onsubmit = onSearch;
+    let search_button = document.getElementById('Search_button')
+    if(search_button) {
+        search_button.onclick = onSearch;
     }
 }
 
@@ -99,20 +99,19 @@ function onParameterChanged() {
         return;
     }
     let search_parameter = element.value;
-    element.innerHTML(search_parameter)
+    element.innerHTML(search_parameter);
 }
 
 function onSearch(){
     let element = document.getElementById('Search_bar');
-    if(!element) {
+    if(!element.value) {
         return;
     }
-    let search_text = element.value
-    let search_parameter = document.getElementById('Search_param').value
+    let search_text = element.value;
+    let search_parameter = document.getElementById('Search_param').value;
 
-    let url = getAPIBaseURL + '/' + search_parameter + '/' + search_text
-
-    window.location.href = url;
+    let url = '' + getAPIBaseURL() + '/search/' + search_parameter + '/' + search_text;
+    window.location.replace(url);
 
 
 }

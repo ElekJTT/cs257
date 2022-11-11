@@ -15,8 +15,10 @@ app.register_blueprint(api.api, url_prefix='/api')
 def home():
     return flask.render_template('index.html')
 
+@app.route('/search/<option>/<search_text>')
+def results(option, search_text):
+    return flask.render_template('mockup2.html', option = option, search_text = search_text)
 
-    
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser('A billboard songs application, including API & DB')
