@@ -11,11 +11,11 @@ app.register_blueprint(api.api, url_prefix='/api')
 
 @app.route('/')
 def home():
-    return flask.render_template('index.html')
+    return flask.render_template('main_page.html')
 
 @app.route('/search/<option>/<search_text>')
 def results(option, search_text):
-    return flask.render_template('mockup2.html', option = option, search_text = search_text)
+    return flask.render_template('search_page.html', option = option, search_text = search_text)
 
 @app.route('/years/<year>')
 def year_page(year):

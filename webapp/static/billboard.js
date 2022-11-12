@@ -7,6 +7,7 @@ window.onload = initialize;
 
 function initialize() {
     loadYearSongs();
+    loadResults()
     loadYearsSelector();
 
     let parameters = document.getElementById('Search_param');
@@ -28,6 +29,8 @@ function initialize() {
     if (years) {
         years.onchange = onYearsSelected;
     }
+
+
 }
 
 // Returns the base URL of the API, onto which endpoint
@@ -127,6 +130,47 @@ function loadYearSongs() {
         console.log(error);
     });
 }
+
+function loadResults() {
+    let option ='artists'
+    let search_text ='a'
+    let url = getAPIBaseURL() + '/search/' + option + '/' +search_text;
+
+    // Send the request to the books API /years/ endpoint
+    fetch(url, {method: 'get'})
+
+    // When the results come back, transform them from a JSON string into
+    // a Javascript object (in this case, a list of author dictionaries).
+    .then((response) => response.json())
+
+    // Once you have your list of year dictionaries, use it to build
+    // an HTML table displaying the song titles and authors.
+    .then(function(results) {
+        // Add the <option> elements to the <select> element
+        let resultsBody = '';
+        for (let k = 0; k < results.length; k++) {
+            let result = results[k];
+            if (result['title']) {
+                yearBody += '<li>'
+                        + result['title'] + ' by ' + result['artist_name']
+                        + '</li>\n';
+            } else {
+                yearBody += '<li>'
+                    + result['artist_name']
+                    + '</li>\n';
+            }
+        }
+
+        let list = document.getElementById('yearSongs');
+        if (list) {
+            list.innerHTML = yearBody;
+        }
+    })
+}
+
+
+
+
 
 //makes it so the search parameters can be changed
 function onParameterChanged() {
