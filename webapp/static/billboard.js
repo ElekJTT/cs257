@@ -7,7 +7,7 @@ window.onload = initialize;
 
 function initialize() {
     loadYearSongs();
-    loadResults()
+    loadResults();
     loadYearsSelector();
 
     let parameters = document.getElementById('Search_param');
@@ -68,7 +68,6 @@ function loadYearsSelector() {
       }
       let yearSelector = document.getElementById('year_selector');
       if (yearSelector) {
-        let year_value = yearSelector.value;
         yearSelector.innerHTML = yearSelectorBody;
       }
     })
@@ -132,9 +131,9 @@ function loadYearSongs() {
 }
 
 function loadResults() {
-    let option ='artists'
-    let search_text ='a'
-    let url = getAPIBaseURL() + '/search/' + option + '/' +search_text;
+    let option = 'artists'
+    let search_text = 'a'
+    let url = getAPIBaseURL() + '/search/' + option + '/' + search_text;
 
     // Send the request to the books API /years/ endpoint
     fetch(url, {method: 'get'})
@@ -151,19 +150,19 @@ function loadResults() {
         for (let k = 0; k < results.length; k++) {
             let result = results[k];
             if (result['title']) {
-                yearBody += '<li>'
+                resultsBody += '<li>'
                         + result['title'] + ' by ' + result['artist_name']
                         + '</li>\n';
             } else {
-                yearBody += '<li>'
+                resultsBody += '<li>'
                     + result['artist_name']
                     + '</li>\n';
             }
         }
 
-        let list = document.getElementById('yearSongs');
+        let list = document.getElementById('Results');
         if (list) {
-            list.innerHTML = yearBody;
+            list.innerHTML = resultsBody;
         }
     })
 }

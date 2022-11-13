@@ -55,6 +55,10 @@ def get_songs_from_year(year):
 
         Returns an empty list if there's any database failure.
     '''
+    #defaults the year to 2015 for the homepage
+    if year == '<year>':
+        year = 2015
+
     query = '''SELECT title, artist_name, rank
                FROM songs, artists, artists_songs, songs_years
                WHERE year = %s

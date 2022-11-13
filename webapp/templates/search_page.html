@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Results</title>
-    <link rel="stylesheet" type="text/css" href="../static/search_page.css" />
-    <script type="text/javascript" src="../static/billboard.js" ></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='search_page.css') }}" />
+    <script type="text/javascript" src="{{ url_for('static', filename='billboard.js') }}" ></script>
 </head>
 <body>
     <div class="menu-bar">
@@ -32,7 +32,7 @@
         <div class="left-content">
         </div>
         <div class="right-content">
-            <h2>Search Results</h2>
+            <h2>{{option}} results for {{search_text}}</h2>
             <ol id="Results">
 
             </ol>
