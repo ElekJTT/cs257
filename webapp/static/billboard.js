@@ -131,8 +131,18 @@ function loadYearSongs() {
 }
 
 function loadResults() {
-    let option = 'artists'
-    let search_text = 'a'
+    let option = 'artists';
+    if(document.getElementById('Option')){
+        option = document.getElementById('Option').innerHTML;
+    } else {
+        return;
+    }
+    let search_text = 'a';
+    if( document.getElementById('Search_text')){
+        search_text = document.getElementById('Search_text').innerHTML;
+    } else {
+        return;
+    }
     let url = getAPIBaseURL() + '/search/' + option + '/' + search_text;
 
     // Send the request to the books API /years/ endpoint
