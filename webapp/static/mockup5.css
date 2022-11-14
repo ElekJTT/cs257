@@ -124,3 +124,7 @@ body{
     font-size: 140%;
 
 }
+
+.hidden_variables_for_reference{
+  display: none;
+}
