@@ -15,7 +15,7 @@ def home():
 
 @app.route('/search/<option>/<search_text>')
 def results(option, search_text):
-    return flask.render_template('mockup2.html', option = option, search_text = search_text)
+    return flask.render_template('search_page.html', option = option, search_text = search_text)
 
 @app.route('/years/<year>')
 def year_page(year):

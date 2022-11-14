@@ -7,6 +7,7 @@ window.onload = initialize;
 
 function initialize() {
     loadYearSongs();
+    loadResults();
     loadYearsSelector();
 
     let parameters = document.getElementById('Search_param');
@@ -28,6 +29,8 @@ function initialize() {
     if (years) {
         years.onchange = onYearsSelected;
     }
+
+
 }
 
 // Returns the base URL of the API, onto which endpoint
@@ -65,7 +68,6 @@ function loadYearsSelector() {
       }
       let yearSelector = document.getElementById('year_selector');
       if (yearSelector) {
-        let year_value = yearSelector.value;
         yearSelector.innerHTML = yearSelectorBody;
       }
     })
@@ -145,6 +147,57 @@ function loadYearSongs() {
         console.log(error);
     });
 }
+
+function loadResults() {
+    let option = 'artists';
+    if(document.getElementById('Option')){
+        option = document.getElementById('Option').innerHTML;
+    } else {
+        return;
+    }
+    let search_text = 'a';
+    if( document.getElementById('Search_text')){
+        search_text = document.getElementById('Search_text').innerHTML;
+    } else {
+        return;
+    }
+    let url = getAPIBaseURL() + '/search/' + option + '/' + search_text;
+
+    // Send the request to the books API /years/ endpoint
+    fetch(url, {method: 'get'})
+
+    // When the results come back, transform them from a JSON string into
+    // a Javascript object (in this case, a list of author dictionaries).
+    .then((response) => response.json())
+
+    // Once you have your list of year dictionaries, use it to build
+    // an HTML table displaying the song titles and authors.
+    .then(function(results) {
+        // Add the <option> elements to the <select> element
+        let resultsBody = '';
+        for (let k = 0; k < results.length; k++) {
+            let result = results[k];
+            if (result['title']) {
+                resultsBody += '<li>'
+                        + result['title'] + ' by ' + result['artist_name']
+                        + '</li>\n';
+            } else {
+                resultsBody += '<li>'
+                    + result['artist_name']
+                    + '</li>\n';
+            }
+        }
+
+        let list = document.getElementById('Results');
+        if (list) {
+            list.innerHTML = resultsBody;
+        }
+    })
+}
+
+
+
+
 
 //makes it so the search parameters can be changed
 function onParameterChanged() {

@@ -55,6 +55,10 @@ def get_songs_from_year(year):
 
         Returns an empty list if there's any database failure.
     '''
+    #defaults the year to 2015 for the homepage
+    if year == '<year>':
+        year = 2015
+
     query = '''SELECT title, artist_name, rank
                FROM songs, artists, artists_songs, songs_years
                WHERE year = %s
@@ -82,24 +86,24 @@ def get_songs_from_year(year):
 
 @api.route('/search/<parameter>/<search_text>')
 def search_with_parameter(parameter, search_text):
-    if parameter == "Artists":
-        query = '''SELECT artist_name FROM authors
-                   WHERE artist_name ILIKE CONCAT('%%', '%s', '%%')  '''
+    if parameter == "artists":
+        query = '''SELECT artist_name FROM artists
+                   WHERE artist_name ILIKE CONCAT('%%', %s, '%%')  '''
 
-    elif parameter == "Songs":
+    elif parameter == "songs":
         query = '''SELECT title, artist_name
                    FROM songs, artists, artists_songs
                    WHERE songs.id = artists_songs.song_id
                    AND artists.id = artists_songs.artist_id
-                   AND songs.title ILIKE CONCAT('%%', '%s', '%%') 
+                   AND songs.title ILIKE CONCAT('%%', %s, '%%') 
                 '''
 
-    elif parameter == "Lyrics":
+    elif parameter == "lyrics":
         query = '''SELECT title, artist_name
                    FROM songs, artists, artists_songs
                    WHERE songs.id = artists_songs.song_id
                    AND artists.id = artists_songs.artist_id
-                   AND songs.lyrics ILIKE CONCAT('%%', '%s', '%%') 
+                   AND songs.lyrics ILIKE CONCAT('%%', %s, '%%') 
                 '''
     else:
         return
@@ -110,7 +114,7 @@ def search_with_parameter(parameter, search_text):
         cursor = connection.cursor()
         cursor.execute(query, (search_text,))
         for row in cursor:
-            if parameter == "Artist":
+            if parameter == "artist":
                 result = {'title':row[0], 'artist_name':row[1]}
             else:
                 result = {'artist_name':row[0]}

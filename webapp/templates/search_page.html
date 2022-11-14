@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Results</title>
-    <link rel="stylesheet" type="text/css" href="../static/search_page.css" />
-    <script type="text/javascript" src="../static/billboard.js" ></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='search_page.css') }}" />
+    <script type="text/javascript" src="{{ url_for('static', filename='billboard.js') }}" ></script>
 </head>
 <body>
     <div class="menu-bar">
@@ -32,22 +32,18 @@
         <div class="left-content">
         </div>
         <div class="right-content">
-            <h2>Search Results</h2>
-            <ol>
-                <li><a href="#">Anti Hero</a> by <a href="#">Taylor Swift</a></li>
-                <li><a href="#">Mexican Wine</a> by <a href="#">Fountains of Wayne</a></li>
-                <li><a href="#">Money for Nothin'</a> by <a href="#">Dire Straits</a></li>
-                <li><a href="#">Corpus Callosum</a> by <a href="#">Polyrythmics</a></li>
-                <li><a href="#">Moondance</a> by <a href="#">Van Morrison</a></li>
-                <li><a href="#">Donna Lee</a> by <a href="#">Jaco Pastorius</a></li>
-                <li><a href="#">Mary Jane's Last Dance</a> by <a href="#">Tom Petty and the Heartbreakers</a></li>
-                <li><a href="#">(Don't Fear) The Reaper</a> by <a href="#">Blue Oyster Cult</a></li>
-                <li><a href="#">Last Friday Night (T.G.I.F)</a> by <a href="#">Katy Perry</a></li>
-                <li><a href="#">Istanbul (Not Constantinople)</a> by <a href="#">They Might be Giants</a></li>
+            <h2>{{option}} results for {{search_text}}</h2>
+            <ol id="Results">
+
             </ol>
         </div>
     </div>
-
+    <div class="hidden_variables_for_reference">
+        <ul>
+            <li id="Option">{{option}}</li>
+            <li id="Search_text">{{search_text}}</li>
+        </ul>
+    </div>
 
 </body>
 </html>
