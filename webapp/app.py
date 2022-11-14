@@ -19,7 +19,7 @@ def results(option, search_text):
 
 @app.route('/years/<year>')
 def year_page(year):
-    return flask.render_template('year_page.html', year=year)
+    return flask.render_template('year_page.html', yearParam=year)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser('A billboard songs application, including API & DB')

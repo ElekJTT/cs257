@@ -51,14 +51,8 @@ def get_songs_from_year(year):
         by surname, then given_name. You may, however, use
         the GET parameter sort to request sorting by birth year.
 
-            http://.../authors/?sort=birth_year
-
         Returns an empty list if there's any database failure.
     '''
-    #defaults the year to 2015 for the homepage
-    if year == '<year>':
-        year = 2015
-
     query = '''SELECT title, artist_name, rank
                FROM songs, artists, artists_songs, songs_years
                WHERE year = %s
@@ -95,7 +89,7 @@ def search_with_parameter(parameter, search_text):
                    FROM songs, artists, artists_songs
                    WHERE songs.id = artists_songs.song_id
                    AND artists.id = artists_songs.artist_id
-                   AND songs.title ILIKE CONCAT('%%', %s, '%%') 
+                   AND songs.title ILIKE CONCAT('%%', %s, '%%')
                 '''
 
     elif parameter == "lyrics":
@@ -103,7 +97,7 @@ def search_with_parameter(parameter, search_text):
                    FROM songs, artists, artists_songs
                    WHERE songs.id = artists_songs.song_id
                    AND artists.id = artists_songs.artist_id
-                   AND songs.lyrics ILIKE CONCAT('%%', %s, '%%') 
+                   AND songs.lyrics ILIKE CONCAT('%%', %s, '%%')
                 '''
     else:
         return

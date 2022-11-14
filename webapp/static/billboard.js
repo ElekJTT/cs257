@@ -84,37 +84,27 @@ function onYearsSelected() {
   }
   let year = element.value;
 
-  location.href = getAPIBaseURL() + 'years/' + year;
+  let url = getBaseURL() + '/years/' + year;
 
-  url = getAPIBaseURL() + 'years/' + year;
+  window.location.replace(url);
 
-  fetch(url, {method: 'get'})
-
-  .then((response) => response.json())
-
-  .then(function(songs_years) {
-      let yearsSelectedBody = ''
-      // let yearSelected = songs_years[0];
-      // // yearsSelectedBody += '<li>'
-      // //                   + songs_years['year']
-      // //                   + '</li>\n';
-      // yearsSelectedBody += '<li><a href="/' + songs_years['year'] + '">'
-      //                   + songs_years['year']
-      //                   + '</a></li>\n';
-      //
-      // let selectYear = document.getElementById('selectYear')
-      // if (selectYear) {
-      //   selectYear.innerHTML = yearsSelectedBody;
-      // }
-  }
-)
-  .catch(function(error) {
-      console.log(error);
-  });
+  // fetch(location.href, {method: 'get'})
+  //
+  // .then((response) => response.json())
+  //
+  // .then(function(songs_years) {
+  //   let
+  // })
 }
 
 function loadYearSongs() {
-    let url = getAPIBaseURL() + '/years';
+    let url = window.location;
+
+    if (url == getBaseURL()) {
+      url = getAPIBaseURL() + '/years/2015';
+    } else {
+      url = getAPIBaseURL() + window.location.pathname;
+    }
 
     // Send the request to the books API /years/ endpoint
     fetch(url, {method: 'get'})
@@ -135,6 +125,9 @@ function loadYearSongs() {
                      + ', rank ' + song['rank']
                      + '</li>\n';
         }
+        // // yearsSelectedBody += '<li><a href="/' + songs_years['year'] + '">'
+        // //                   + songs_years['year']
+        // //                   + '</a></li>\n';
 
         let list = document.getElementById('yearSongs');
         if (list) {
@@ -196,9 +189,6 @@ function loadResults() {
 }
 
 
-
-
-
 //makes it so the search parameters can be changed
 function onParameterChanged() {
     let element = document.getElementById('Search_param');
@@ -222,3 +212,17 @@ function onSearch(){
 
 
 }
+
+// let yearsSelectedBody = ''
+// let yearSelected = songs_years[0];
+// yearsSelectedBody += '<li>'
+//                   + songs_years['year']
+//                   + '</li>\n';
+// // yearsSelectedBody += '<li><a href="/' + songs_years['year'] + '">'
+// //                   + songs_years['year']
+// //                   + '</a></li>\n';
+//
+// let selectYear = document.getElementById('selectYear')
+// if (selectYear) {
+//   selectYear.innerHTML = yearsSelectedBody;
+// loadYearSongs(songs_years);

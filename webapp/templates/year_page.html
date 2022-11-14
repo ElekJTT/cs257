@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Year Page</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='mockup5.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='search_page.css') }}" />
     <script type="text/javascript" src="{{ url_for('static', filename='billboard.js') }}" ></script>
 </head>
 <body>
@@ -33,19 +33,8 @@
         <div class="left-content">
         </div>
         <div class="right-content">
-            <h2>Top songs of </h2>
-            <ol>
-                <li><a href="#">Uptown Funk</a> by <a href="#">Mark Ronson</a></li>
-                <li><a href="#">Thinking Out Loud</a> by <a href="#">Ed Sheeran</a></li>
-                <li><a href="#">See You Again</a> by <a href="#">Wiz Khalifa</a></li>
-                <li><a href="#">Trap Queen</a> by <a href="#">Fetty Wap</a></li>
-                <li><a href="#">Sugar</a> by <a href="#">Maroon 5</a></li>
-                <li><a href="#">Shut Up and Dance</a> by <a href="#">Walk the Moon</a></li>
-                <li><a href="#">Blank Space</a> by <a href="#">Taylor Swift</a></li>
-                <li><a href="#">Watch Me</a> by <a href="#">Silento</a></li>
-                <li><a href="#">Earned It</a> by <a href="#">The Weeknd</a></li>
-                <li><a href="#">The Hills</a> by <a href="#">The Weeknd</a></li>
-            </ol>
+            <h2 id = "selectYear">Top songs of {{yearParam}}:</h2>
+            <ol id = "yearSongs"></ol>
         </div>
     </div>
 
