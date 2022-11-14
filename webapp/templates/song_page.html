@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Year Page</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='search_page.css') }}" />
+    <title>Song Page</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='song_page.css') }}" />
     <script type="text/javascript" src="{{ url_for('static', filename='billboard.js') }}" ></script>
 </head>
 <body>
@@ -14,6 +14,7 @@
         <div class="dropdown">
             <button class="dropbtn">Years<select id="year_selector"></select></button>
         </div>
+
         <input id='Search_bar' type="text" placeholder="Search..">
         <button type="submit" id='Search_button'>Submit</button>
 
@@ -29,10 +30,25 @@
     <div class="content">
 
         <div class="left-content">
+          <h2>Popular Songs by Taylor Swift</h2>
+
+          <p><a href="#">Bad Blood</a></p>
+          <p><a href="#">Love Story</a></p>
+          <p><a href="#">Look What You Made Me Do</a></p>
+          <p><a href="#">All Too Well</a></p>
+          <p><a href="#">Shake It Off</a></p>
         </div>
         <div class="right-content">
-            <h2>Top songs of {{yearParam}}:</h2>
-            <ol id = "yearSongs"></ol>
+            <h2>{{song_title}} by {{artist_name}}:</h2>
+            <h2>Anti-Hero by <a href="#">Taylor Swift</a></h2>
+            <h3>Lyrics:</h3>
+                <p>I have this thing where I get older but just never wiser
+                    Midnights become my afternoons
+                    When my depression works the graveyard shift
+                    All of the people I've ghosted stand there in the room
+                    I should not be left to my own devices
+                    They come with prices and vices</p>
+        </div>
         </div>
     </div>
 </body>
