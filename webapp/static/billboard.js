@@ -82,24 +82,29 @@ function onYearsSelected() {
   }
   let year = element.value;
 
-  location.href = getBaseURL() + '/years/' + year;
+  location.href = getAPIBaseURL() + 'years/' + year;
 
-  fetch(location.href, {method: 'get'})
+  url = getAPIBaseURL() + 'years/' + year;
+
+  fetch(url, {method: 'get'})
 
   .then((response) => response.json())
 
   .then(function(songs_years) {
-  //     let yearsSelectedBody = ''
-  //     let yearSelected = songs_years[0];
-  //     yearsSelectedBody += '<li><a href="/' + songs_years['year'] + '">'
-  //                       + songs_years['year']
-  //                       + '</a></li>\n';
-  //
-  //     let selectYear = document.getElementById('selectYear')
-  //     if (selectYear) {
-  //       selectYear.innerHTML = yearsSelectedBody;
-  //     }
-  // }
+      let yearsSelectedBody = ''
+      // let yearSelected = songs_years[0];
+      // // yearsSelectedBody += '<li>'
+      // //                   + songs_years['year']
+      // //                   + '</li>\n';
+      // yearsSelectedBody += '<li><a href="/' + songs_years['year'] + '">'
+      //                   + songs_years['year']
+      //                   + '</a></li>\n';
+      //
+      // let selectYear = document.getElementById('selectYear')
+      // if (selectYear) {
+      //   selectYear.innerHTML = yearsSelectedBody;
+      // }
+  }
 )
   .catch(function(error) {
       console.log(error);
