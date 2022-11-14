@@ -96,7 +96,8 @@ function onYearsSelected() {
 }
 
 function loadYearSongs() {
-    let url = getAPIBaseURL() + '/years/<year>';
+    let year = document.getElementById('Year_to_get').innerHTML
+    let url = getAPIBaseURL() + '/years/' + year;
 
     // Send the request to the books API /years/ endpoint
     fetch(url, {method: 'get'})
