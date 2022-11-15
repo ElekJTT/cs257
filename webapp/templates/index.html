@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" type="text/css" href="../static/mockup1.css" />
+    <script type="text/javascript" src="../static/billboard.js" ></script>
+</head>
+<body>
+    <div class="menu-bar">
+        <h1><a id="title" href="/">Billboard Top 100</a></h1>
+        <div class="dropdown">
+            <button class="dropbtn">Years<select id="year_selector"></select></button>
+
+        </div>
+        <input id='Search_bar' type="text" placeholder="Search..">
+        <button type="submit" id='Search_button'>Submit</button>
+
+        <div class="dropdown">
+            <select id="Search_param">
+              <option value="artists">Artists</option>
+              <option value="songs">Songs</option>
+              <option value="lyrics">Lyrics</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="content">
+
+        <div class="left-content">
+            <h2>Top 5 Artists of the year</h2>
+
+            <p><a href="#TaylorSwift">Taylor Swift</a></p>
+            <p><a href="#Migos">Migos</a></p>
+            <p><a href="#DavidBowie">David Bowie</a></p>
+            <p><a href="#FountainsofWayne">Fountains of Wayne</a></p>
+            <p><a href="#DOMIandJDBeck">DOMI and JD Beck</a></p>
+        </div>
+        <div class="right-content">
+            <h2>Billboard's top 100 songs of the year</h2>
+            <ol id="yearSongs">
+                <li>first thing</li>
+            </ol>
+        </div>
+    </div>
+
+
+</body>
+</html>

@@ -5,24 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Year Page</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='mockup5.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='search_page.css') }}" />
     <script type="text/javascript" src="{{ url_for('static', filename='billboard.js') }}" ></script>
 </head>
 <body>
     <div class="menu-bar">
-        <h1><a id="title" href="#home">Billboard Top 100</a></h1>
+        <h1><a id="title" href="/">Billboard Top 100</a></h1>
         <div class="dropdown">
             <button class="dropbtn">Years<select id="year_selector"></select></button>
         </div>
-        <input type="text" placeholder="Search..">
+        <input id='Search_bar' type="text" placeholder="Search..">
+        <button type="submit" id='Search_button'>Submit</button>
 
         <div class="dropdown">
-            <button class="dropbtn">Search for Artists</button>
-            <div id="SearchDropDown" class="dropdown-content">
-              <a href="#">Artists</a>
-              <a href="#">Songs</a>
-              <a href="#">Lyrics</a>
-            </div>
+            <select id="Search_param">
+              <option value="1">Artists</option>
+              <option value="2">Songs</option>
+              <option value="3">Lyrics</option>
+            </select>
         </div>
     </div>
 
@@ -31,17 +31,9 @@
         <div class="left-content">
         </div>
         <div class="right-content">
-            <h2>Top songs of {{year}}</h2>
-            <ol id="yearSongs">
-
-            </ol>
+            <h2>Top songs of {{yearParam}}:</h2>
+            <ol id = "yearSongs"></ol>
         </div>
     </div>
-
-    <div class="hidden_variables_for_reference">
-        <p id="Year_to_get" >{{year}}</p>
-    </div>
-
-
 </body>
 </html>

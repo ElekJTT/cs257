@@ -19,7 +19,15 @@ def results(option, search_text):
 
 @app.route('/years/<year>')
 def year_page(year):
-    return flask.render_template('year_page.html', year=year)
+    return flask.render_template('year_page.html', yearParam=year)
+
+@app.route('/artist/<artist>')
+def artist_page(artist):
+    return flask.render_template('artist_page.html', artistParam = artist)
+
+@app.route('/artist/<artist>/song/<song>')
+def song_page(artist, song):
+    return flask.render_template('song_page.html', artistParam = artist, songParam = song)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser('A billboard songs application, including API & DB')

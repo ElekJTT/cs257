@@ -51,14 +51,8 @@ def get_songs_from_year(year):
         by surname, then given_name. You may, however, use
         the GET parameter sort to request sorting by birth year.
 
-            http://.../authors/?sort=birth_year
-
         Returns an empty list if there's any database failure.
     '''
-    #defaults the year to 2015 for the homepage
-    if year == '<year>':
-        year = 2015
-
     query = '''SELECT title, artist_name, rank
                FROM songs, artists, artists_songs, songs_years
                WHERE year = %s
@@ -95,7 +89,7 @@ def search_with_parameter(parameter, search_text):
                    FROM songs, artists, artists_songs
                    WHERE songs.id = artists_songs.song_id
                    AND artists.id = artists_songs.artist_id
-                   AND songs.title ILIKE CONCAT('%%', %s, '%%') 
+                   AND songs.title ILIKE CONCAT('%%', %s, '%%')
                 '''
 
     elif parameter == "lyrics":
@@ -103,7 +97,7 @@ def search_with_parameter(parameter, search_text):
                    FROM songs, artists, artists_songs
                    WHERE songs.id = artists_songs.song_id
                    AND artists.id = artists_songs.artist_id
-                   AND songs.lyrics ILIKE CONCAT('%%', %s, '%%') 
+                   AND songs.lyrics ILIKE CONCAT('%%', %s, '%%')
                 '''
     else:
         return
@@ -131,7 +125,7 @@ def search_with_parameter(parameter, search_text):
         return json.dumps(result_list)
 
 @api.route('/artist/<artist>')
-def get_artist_songs(artist_name):
+def get_artist_songs(artist):
     query = '''SELECT title, rank, year
                FROM songs, artists, artists_songs, songs_years
                WHERE artist_name = %s
@@ -144,7 +138,7 @@ def get_artist_songs(artist_name):
     try:
         connection = get_connection()
         cursor = connection.cursor()
-        cursor.execute(query, (artist_name,))
+        cursor.execute(query, (artist,))
         for row in cursor:
             song = {'title':row[0],
                     'rank':row[1],
@@ -158,7 +152,7 @@ def get_artist_songs(artist_name):
     return json.dumps(song_list)
 
 @api.route('/artist/<artist>/song/<song>')
-def get_song_info(artist_name, title):
+def get_song_info(artist, song):
 
     query = '''SELECT title, artist_name, year, rank, lyrics
                FROM songs, artists, artists_songs, songs_years
@@ -173,14 +167,14 @@ def get_song_info(artist_name, title):
     try:
         connection = get_connection()
         cursor = connection.cursor()
-        cursor.execute(query, (title, artist_name))
+        cursor.execute(query, (song, artist))
         for row in cursor:
-            song = {'title':row[0],
+            song_info = {'title':row[0],
                     'artist_name':row[1],
                     'year':row[2],
                     'rank':row[3],
                     'lyrics':row[4]}
-            song_list.append(song)
+            song_list.append(song_info)
         cursor.close()
         connection.close()
     except Exception as e:
