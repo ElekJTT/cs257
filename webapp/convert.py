@@ -33,10 +33,14 @@ with open ("billboard_lyrics_1964-2015.csv", 'r', encoding= 'latin-1') as reader
                         artist_name = str(dataList[2])
                         year = str(dataList[3])
                         lyrics = str(dataList[4])
+
+                        song_info_key = song_title + artist_name + year
+
+
                         
-                        if song_title not in songs_dict:
+                        if song_info_key not in songs_dict:
                             song_id = len(songs_dict) + 1
-                            songs_dict[song_title] = song_id
+                            songs_dict[song_info_key] = song_id
                             songs.writerow([song_id, song_title, lyrics])
 
                         if artist_name not in artists_dict:
@@ -44,8 +48,8 @@ with open ("billboard_lyrics_1964-2015.csv", 'r', encoding= 'latin-1') as reader
                             artists_dict[artist_name] = artist_id
                             artists.writerow([artist_id, artist_name])
 
-                        artists_songs.writerow([artists_dict[artist_name], songs_dict[song_title]])
-                        songs_years.writerow([songs_dict[song_title], year, rank])
+                        artists_songs.writerow([artists_dict[artist_name], songs_dict[song_info_key]])
+                        songs_years.writerow([songs_dict[song_info_key], year, rank])
 
 
                 
