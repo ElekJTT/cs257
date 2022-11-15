@@ -1,12 +1,12 @@
 .dropbtn {
     background-color: #3498DB;
-    color: white;
+    color: black;
     padding: 16px;
     font-size: 16px;
     border: none;
     cursor: pointer;
   }
-  
+
 .dropbtn:hover, .dropbtn:focus{
   background-color: #2980B9;
 }
@@ -47,7 +47,7 @@
   margin-top: -17px;
   background-color: #f1f1f1;
   width: max-content;
-  
+
 }
 
 
@@ -86,14 +86,14 @@ a:hover{
     text-decoration: underline;
 }
 
-body{
+/* body{
     background-image: url(tswift.jpg);
-}
+} */
 
 .menu-bar{
     text-align: center;
     display: block;
-    color: white;
+    color: black;
     margin-top: 0%;
     padding-top: 0%;
 }
@@ -104,7 +104,7 @@ body{
     justify-content: space-between;
     height: 500px;
     width: 100%;
-    color: white;
+    color: black;
 }
 
 .content ul {

@@ -9,6 +9,8 @@ function initialize() {
     loadYearSongs();
     loadResults();
     loadYearsSelector();
+    loadSongLyrics();
+    loadArtistSongs();
 
     let parameters = document.getElementById('Search_param');
     if (parameters) {
@@ -30,10 +32,10 @@ function initialize() {
         years.onchange = onYearsSelected;
     }
 
-    let song = document.getElementById('yearSongs');
-    if (song) {
-        song.onclick = onSongClick;
-    }
+    // let song = document.getElementById('yearSongs');
+    // if (song) {
+    //     song.onclick = onSongClick;
+    // }
 }
 
 // Returns the base URL of the API, onto which endpoint
@@ -87,7 +89,7 @@ function onYearsSelected() {
   }
   let year = element.value;
 
-  let url = getBaseURL() + '/years/' + year;
+  let url = getBaseURL() + 'years/' + year;
 
   window.location.replace(url);
 }
@@ -106,37 +108,20 @@ function loadYearSongs() {
     .then((response) => response.json())
 
     .then(function(songs) {
-        // let songBody = '<ul id= "songList">';
-        // let artistBody = '<ul id= "artistList">';
         let yearBody = '';
         for (let k = 0; k < songs.length; k++) {
             let song = songs[k];
-            // songBody += '<li><a href="/' + song['title'] + '">'
-            //          + song['title'] + '</a></li>\n';
-            // artistBody += '<a href ="/' + song['artist_name'] + '">' + song['artist_name']
-            // + '</a></li>\n';
             yearBody += '<li><a href="/artist/' + song['artist_name'] + '/song/' + song['title'] + '">'
                      + song['title'] + '</a>' + ' by ' + '<a href ="/artist/' + song['artist_name'] + '">' + song['artist_name']
                      + '</a>' + ', rank ' + song['rank']
                      + '</li>\n';
         }
-        // songBody += '</ul>';
-        // artistBody += '</ul>';
 
         let yearList = document.getElementById('yearSongs');
         if (yearList) {
             yearList.innerHTML = yearBody;
         }
 
-        // let songList = document.getElementById('songList');
-        // if (songList) {
-        //     songList.innerHTML = songBody;
-        // }
-        //
-        // let artistList = document.getElementById('artistList');
-        // if (artistList) {
-        //     artistList.innerHTML = artistBody;
-        // }
     })
     .catch(function(error) {
         console.log(error);
@@ -191,31 +176,20 @@ function loadResults() {
 }
 
 function loadSongLyrics() {
-    let url = window.location;
-
-    if (url == getBaseURL()) {
-      url = getAPIBaseURL() + '/years/2015';
-    } else {
-      url = getAPIBaseURL() + window.location.pathname;
-    }
+    let url = getAPIBaseURL() + window.location.pathname;
 
     fetch(url, {method: 'get'})
 
     .then((response) => response.json())
 
-    .then(function(songs) {
-        let yearBody = '';
-        for (let k = 0; k < songs.length; k++) {
-            let song = songs[k];
-            yearBody += '<li><a href="/' + song['title'] + '">'
-                     + song['title'] + '</a>' + ' by ' + '<a href ="/' + song['artist_name'] + '">' + song['artist_name']
-                     + '</a>' + ', rank ' + song['rank']
-                     + '</li>\n';
-        }
+    .then(function(song_info) {
+        let lyricsBody = '';
+        let song = song_info[0];
+        lyricsBody += song['lyrics'];
 
-        let list = document.getElementById('yearSongs');
-        if (list) {
-            list.innerHTML = yearBody;
+        let lyricList = document.getElementById('songLyrics');
+        if (lyricList) {
+            lyricList.innerHTML = lyricsBody;
         }
     })
     .catch(function(error) {
@@ -223,18 +197,46 @@ function loadSongLyrics() {
     });
 }
 
-// function onSongClick() {
-//   let element = document.getElementById('yearSongs');
-//   if (!element) {
-//     return;
-//   }
-//   let song = element.value;
-//
-//   let url = getBaseURL() + '/years/' + song;
-//
-//   window.location.replace(url);
-// }
+function loadArtistSongs() {
+    let url_helper = window.location.pathname;
+    let url = getAPIBaseURL() + url_helper;
 
+    fetch(url, {method: 'get'})
+
+    .then((response) => response.json())
+
+    .then(function(song_list) {
+      let artistBody = '';
+      for (let k = 0; k < song_list.length; k++) {
+          let song = song_list[k];
+          artistBody += '<li><a href="/' + url_helper + '/song/' + song['title'] + '">'
+                   + song['title'] + '</a>'
+                   + ', rank ' + song['rank']
+                   + '</li>\n';
+      }
+
+      let artistList = document.getElementById('artistSongs');
+      if (artistList) {
+          artistList.innerHTML = artistBody;
+      }
+      // for (let k = 0; k < songs.length; k++) {
+      //     let song = songs[k];
+      //     yearBody += '<li><a href="/artist/' + song['artist_name'] + '/song/' + song['title'] + '">'
+      //              + song['title'] + '</a>' + ' by ' + '<a href ="/artist/' + song['artist_name'] + '">' + song['artist_name']
+      //              + '</a>' + ', rank ' + song['rank']
+      //              + '</li>\n';
+      // }
+      //
+      // let yearList = document.getElementById('yearSongs');
+      // if (yearList) {
+      //     yearList.innerHTML = yearBody;
+      // }
+
+    })
+    .catch(function(error) {
+        console.log(error);
+    });
+}
 
 //makes it so the search parameters can be changed
 function onParameterChanged() {

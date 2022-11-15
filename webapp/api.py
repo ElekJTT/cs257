@@ -125,7 +125,7 @@ def search_with_parameter(parameter, search_text):
         return json.dumps(result_list)
 
 @api.route('/artist/<artist>')
-def get_artist_songs(artist_name):
+def get_artist_songs(artist):
     query = '''SELECT title, rank, year
                FROM songs, artists, artists_songs, songs_years
                WHERE artist_name = %s
@@ -138,7 +138,7 @@ def get_artist_songs(artist_name):
     try:
         connection = get_connection()
         cursor = connection.cursor()
-        cursor.execute(query, (artist_name,))
+        cursor.execute(query, (artist,))
         for row in cursor:
             song = {'title':row[0],
                     'rank':row[1],
@@ -152,7 +152,7 @@ def get_artist_songs(artist_name):
     return json.dumps(song_list)
 
 @api.route('/artist/<artist>/song/<song>')
-def get_song_info(artist_name, title):
+def get_song_info(artist, song):
 
     query = '''SELECT title, artist_name, year, rank, lyrics
                FROM songs, artists, artists_songs, songs_years
@@ -167,14 +167,14 @@ def get_song_info(artist_name, title):
     try:
         connection = get_connection()
         cursor = connection.cursor()
-        cursor.execute(query, (title, artist_name))
+        cursor.execute(query, (song, artist))
         for row in cursor:
-            song = {'title':row[0],
+            song_info = {'title':row[0],
                     'artist_name':row[1],
                     'year':row[2],
                     'rank':row[3],
                     'lyrics':row[4]}
-            song_list.append(song)
+            song_list.append(song_info)
         cursor.close()
         connection.close()
     except Exception as e:
