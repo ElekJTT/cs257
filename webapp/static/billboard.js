@@ -89,7 +89,7 @@ function onYearsSelected() {
   }
   let year = element.value;
 
-  let url = getBaseURL() + 'years/' + year;
+  let url = getBaseURL() + 'top100/' + year;
 
   window.location.replace(url);
 }
@@ -98,7 +98,7 @@ function loadYearSongs() {
     let url = window.location;
 
     if (url == getBaseURL()) {
-      url = getAPIBaseURL() + '/years/2015';
+      url = getAPIBaseURL() + '/top100/2015';
     } else {
       url = getAPIBaseURL() + window.location.pathname;
     }
@@ -209,7 +209,7 @@ function loadArtistSongs() {
       let artistBody = '';
       for (let k = 0; k < song_list.length; k++) {
           let song = song_list[k];
-          artistBody += '<li><a href="/' + url_helper + '/song/' + song['title'] + '">'
+          artistBody += '<li><a href="' + url_helper + '/song/' + song['title'] + '">'
                    + song['title'] + '</a>'
                    + ', rank ' + song['rank']
                    + '</li>\n';
@@ -219,18 +219,6 @@ function loadArtistSongs() {
       if (artistList) {
           artistList.innerHTML = artistBody;
       }
-      // for (let k = 0; k < songs.length; k++) {
-      //     let song = songs[k];
-      //     yearBody += '<li><a href="/artist/' + song['artist_name'] + '/song/' + song['title'] + '">'
-      //              + song['title'] + '</a>' + ' by ' + '<a href ="/artist/' + song['artist_name'] + '">' + song['artist_name']
-      //              + '</a>' + ', rank ' + song['rank']
-      //              + '</li>\n';
-      // }
-      //
-      // let yearList = document.getElementById('yearSongs');
-      // if (yearList) {
-      //     yearList.innerHTML = yearBody;
-      // }
 
     })
     .catch(function(error) {

@@ -17,7 +17,7 @@ def home():
 def results(option, search_text):
     return flask.render_template('search_page.html', option = option, search_text = search_text)
 
-@app.route('/years/<year>')
+@app.route('/top100/<year>')
 def year_page(year):
     return flask.render_template('year_page.html', yearParam=year)
 

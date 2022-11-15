@@ -43,7 +43,7 @@ def get_years():
 
     return json.dumps(year_list)
 
-@api.route('/years/<year>')
+@api.route('/top100/<year>')
 def get_songs_from_year(year):
     ''' Returns a list of all the songs for a particular year in our database.
 
@@ -181,3 +181,37 @@ def get_song_info(artist, song):
         print(e, file=sys.stderr)
 
     return json.dumps(song_list)
+
+@api.route('/help')
+def get_help():
+    help_string = '''Request:/
+    Response: A JSON list of artists/songs for the most recent year in the database
+
+    Request:/search/<parameter>/<search_text>
+    Response: Parameter can be artists, songs, or lyrics
+        If the parameter is artists, return a JSON list containing artists whose names contain the search text
+        If the parameter is songs, return a JSON list containing songs whose titles contain the search text
+        If the parameter is lyrics, return a JSON list containing songs whose lyrics contain the search text
+
+    Request:/years
+    Response: A JSON list of all the years in the database, descending order.
+
+    Request:/top100/<year>
+    Response: A JSON list of the top 100 songs from the <year>
+
+    Request: /artist/<artist>
+    Response: A JSON list, representing a specific <artist>, of song dictionaries with the song title, rank, and year.
+        Title-- (string) the name of the song
+        Rank-- (int) the rank the song achieved in the year
+        Year-- (int) the year the song placed in the top 100 songs
+
+    Request: /artist/<artist>/song/<song>
+    Response: A JSON dictionary with each item representing a song containing, in order, the title of the song, artist, year, rank, lyrics
+     	Artist-- (string) the name of the artist
+        Title-- (string) the name of the song
+    	Lyrics– (string) the lyrics of the song
+    	Year– (int) the year the song made top 100
+    	Rank– (int) the rank the song achieved
+
+    '''
+    return help_string
