@@ -14,5 +14,3 @@ FEATURES NOT YET WORKING:
 - The song page does not yet display the correct song information
 - The side bar on the home page does not have working links
 - The default selectors for year and artists do not work, users have to chose an option for it to work
-- The data is has a bug in how it was working so some songs which have the same name as other songs or made
-  made the top 100 list two different years are not properly displayed. 
