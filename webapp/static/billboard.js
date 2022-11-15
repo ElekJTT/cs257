@@ -96,6 +96,9 @@ function onYearsSelected() {
 }
 
 function loadYearSongs() {
+    if(!document.getElementById('Year_to_get')){
+        return;
+    }
     let year = document.getElementById('Year_to_get').innerHTML
     let url = getAPIBaseURL() + '/years/' + year;
 
