@@ -233,7 +233,7 @@ function onParameterChanged() {
         return;
     }
     let search_parameter = element.value;
-    element.innerHTML(search_parameter);
+    element.innerHTML = search_parameter
 }
 
 function onSearch(){
