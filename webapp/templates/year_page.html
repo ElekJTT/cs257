@@ -9,16 +9,17 @@
     <script type="text/javascript" src="{{ url_for('static', filename='billboard.js') }}" ></script>
 </head>
 <body>
-    <div class="menu-bar">
-        <h1><a id="title" href="/">Billboard Top 100</a></h1>
-        <div class="dropdown">
-            <button class="dropbtn">Years<select id="year_selector"></select></button>
-        </div>
-        <input id='Search_bar' type="text" placeholder="Search..">
-        <button type="submit" id='Search_button'>Submit</button>
+    <div class="header">
 
-        <div class="dropdown">
-            <select id="Search_param">
+        <h1><a id="title" href="/">Billboard Top 100</a></h1>
+
+        <div id="Option_bar">
+            <select id="year_selector" class ="dropdown">select</select>
+
+            <input id='Search_bar' type="text" placeholder="Search..">
+            <button type="submit" id='Search_button'>Submit</button>
+
+            <select id="Search_param" class ="dropdown">
                 <option value="artists">Artists</option>
                 <option value="songs">Songs</option>
                 <option value="lyrics">Lyrics</option>

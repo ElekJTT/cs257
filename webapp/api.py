@@ -122,7 +122,7 @@ def search_with_parameter(parameter, search_text):
     if(result_list):
         return json.dumps(result_list)
     else:
-        result_list.append({'artist_name':'Miley Cyrus'})
+        result_list.append({'artist_name':'No Results'})
         return json.dumps(result_list)
 
 @api.route('/artist/<artist>')
