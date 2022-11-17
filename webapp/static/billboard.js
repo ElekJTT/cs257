@@ -158,13 +158,14 @@ function loadResults() {
         for (let k = 0; k < results.length; k++) {
             let result = results[k];
             if (result['title']) {
-                resultsBody += '<li>'
-                        + result['title'] + ' by ' + result['artist_name']
-                        + '</li>\n';
+                resultsBody += '<li><a href="/artist/' + result['artist_name'] + '/song/' + reulst['title'] + '">'
+                         + result['title'] + '</a>' + ' by ' + '<a href ="/artist/' + result['artist_name'] + '">' + result['artist_name']
+                         + '</a>' + ', rank ' + result['rank']
+                         + '</li>\n';
             } else {
-                resultsBody += '<li>'
+                resultsBody += '<li><a href ="/artist/' + result['artist_name'] + '">'
                     + result['artist_name']
-                    + '</li>\n';
+                    + '</a></li>\n';
             }
         }
 
