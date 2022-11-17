@@ -58,6 +58,12 @@ function getBaseURL() {
 
 function loadYearsSelector() {
     let url = getAPIBaseURL() + '/years';
+    if(window.location.pathname == '/'){
+        var selected_year = 2015;
+    } else {
+        var selected_year = window.location.pathname.slice(-4);
+    }
+    
 
     fetch(url, {method:'get'})
 
@@ -67,7 +73,11 @@ function loadYearsSelector() {
       let yearSelectorBody = '';
       for (let i = 0; i < songs_years.length; i++) {
           let year = songs_years[i];
-          yearSelectorBody += '<option value="'+ year['year'] + '">'
+          yearSelectorBody += '<option value="'+ year['year'] + '"'
+          if(year['year'] == selected_year) {
+            yearSelectorBody += ' selected'
+          }
+          yearSelectorBody += '>'
                            + year['year']
                            + '</option>\n';
       }
