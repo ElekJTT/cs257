@@ -129,13 +129,13 @@ function loadYearSongs() {
 }
 
 function loadResults() {
-    let option = 'artists';
+    let option = '-1';
     if(document.getElementById('Option')){
         option = document.getElementById('Option').innerHTML;
     } else {
         return;
     }
-    let search_text = 'a';
+    let search_text = '-1';
     if( document.getElementById('Search_text')){
         search_text = document.getElementById('Search_text').innerHTML;
     } else {
@@ -158,9 +158,9 @@ function loadResults() {
         for (let k = 0; k < results.length; k++) {
             let result = results[k];
             if (result['title']) {
-                resultsBody += '<li><a href="/artist/' + result['artist_name'] + '/song/' + reulst['title'] + '">'
+                resultsBody += '<li><a href="/artist/' + result['artist_name'] + '/song/' + result['title'] + '">'
                          + result['title'] + '</a>' + ' by ' + '<a href ="/artist/' + result['artist_name'] + '">' + result['artist_name']
-                         + '</a>' + ', rank ' + result['rank']
+                         + '</a>'
                          + '</li>\n';
             } else {
                 resultsBody += '<li><a href ="/artist/' + result['artist_name'] + '">'
@@ -234,7 +234,7 @@ function onParameterChanged() {
         return;
     }
     let search_parameter = element.value;
-    element.innerHTML = search_parameter
+    element.innerHTML(search_parameter);
 }
 
 function onSearch(){
