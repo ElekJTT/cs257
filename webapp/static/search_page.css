@@ -6,6 +6,11 @@ a:hover{
   text-decoration: underline;
 }
 
+
+a {
+  text-transform: capitalize;
+}
+
 .header{
   text-align: center;
   display: block;
@@ -90,4 +95,8 @@ height: 36px;
 
 .hidden_variables_for_reference{
     display: none;
+}
+
+h2::first-letter {
+  text-transform: capitalize;
 }

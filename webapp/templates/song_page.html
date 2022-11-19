@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Song Page</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}" />
+    <title>{{songParam}}</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='song_page.css') }}" />
     <script type="text/javascript" src="{{ url_for('static', filename='billboard.js') }}" ></script>
 </head>
@@ -29,16 +30,12 @@
     <div class="content">
 
         <div class="left-content">
-          <h2>Popular Songs by Taylor Swift</h2>
+          <!-- <h2>Popular Songs by {{artistParam}}: </h2>
 
-          <p><a href="#">Bad Blood</a></p>
-          <p><a href="#">Love Story</a></p>
-          <p><a href="#">Look What You Made Me Do</a></p>
-          <p><a href="#">All Too Well</a></p>
-          <p><a href="#">Shake It Off</a></p>
+          <p id = "artistSongs"></p> -->
         </div>
         <div class="right-content">
-            <h2><a id = "{{songParam}}">{{songParam}} </a> by <a id = "{{artistParam}}"> {{artistParam}}</a></h2>
+            <h2 id = "songArtist"></h2>
             <h3>Lyrics:</h3>
                 <p id = "songLyrics"></p>
         </div>

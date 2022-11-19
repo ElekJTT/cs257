@@ -6,6 +6,10 @@ a:hover{
   text-decoration: underline;
 }
 
+a{
+  text-transform: capitalize;
+}
+
 .header{
   text-align: center;
   display: block;

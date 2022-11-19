@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Page</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}" />
+    <title>Home</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main_page.css') }}" />
     <script type="text/javascript" src="{{ url_for('static', filename='billboard.js') }}" ></script>
 </head>
@@ -30,16 +31,16 @@
     <div class="content">
 
         <div class="left-content">
-            <h2>Top 5 Artists of the year</h2>
+            <h2>Featured Artists</h2>
 
-            <p><a href="#TaylorSwift">Taylor Swift</a></p>
-            <p><a href="#Migos">Migos</a></p>
-            <p><a href="#DavidBowie">David Bowie</a></p>
-            <p><a href="#FountainsofWayne">Fountains of Wayne</a></p>
-            <p><a href="#DOMIandJDBeck">DOMI and JD Beck</a></p>
+            <p><a href="artist/taylor swift">Taylor Swift</a></p>
+            <p><a href="/artist/pitbull">Pitbull</a></p>
+            <p><a href="/artist/nicki minaj">Nicki Minaj</a></p>
+            <p><a href="/artist/backstreet boys">Backstreet Boys</a></p>
+            <p><a href="/artist/the turtles">The Turtles</a></p>
         </div>
         <div class="right-content">
-            <h2>Billboard's top 100 songs of the year</h2>
+            <h2>Billboard's Top 100 Songs of 2015</h2>
             <ol id="yearSongs"></ol>
         </div>
     </div>

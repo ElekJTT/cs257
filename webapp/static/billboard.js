@@ -63,7 +63,7 @@ function loadYearsSelector() {
     } else {
         var selected_year = window.location.pathname.slice(-4);
     }
-    
+
 
     fetch(url, {method:'get'})
 
@@ -123,7 +123,7 @@ function loadYearSongs() {
             let song = songs[k];
             yearBody += '<li><a href="/artist/' + song['artist_name'] + '/song/' + song['title'] + '">'
                      + song['title'] + '</a>' + ' by ' + '<a href ="/artist/' + song['artist_name'] + '">' + song['artist_name']
-                     + '</a>' + ', rank ' + song['rank']
+                     + '</a>' + ', Rank ' + song['rank']
                      + '</li>\n';
         }
 
@@ -194,13 +194,23 @@ function loadSongLyrics() {
     .then((response) => response.json())
 
     .then(function(song_info) {
-        let lyricsBody = '';
         let song = song_info[0];
-        lyricsBody += song['lyrics'];
+        let lyricsBody = song['lyrics'];
+        let artistBody = song['artist_name'];
+
+        //Creates links to the song and artist pages
+        let songArtistBody = '';
+        songArtistBody += '<a href="/artist/' + song['artist_name'] + '/song/' + song['title'] + '">'
+                 + song['title'] + '</a>' + ' by ' + '<a href ="/artist/' + song['artist_name'] + '">' + song['artist_name']
+                 + '</a>' + '\n';
 
         let lyricList = document.getElementById('songLyrics');
+        let songArtist = document.getElementById('songArtist')
         if (lyricList) {
             lyricList.innerHTML = lyricsBody;
+        }
+        if (songArtist) {
+            songArtist.innerHTML = songArtistBody;
         }
     })
     .catch(function(error) {
@@ -222,7 +232,7 @@ function loadArtistSongs() {
           let song = song_list[k];
           artistBody += '<li><a href="' + url_helper + '/song/' + song['title'] + '">'
                    + song['title'] + '</a>'
-                   + ', rank ' + song['rank']
+                   + ', <a href="/top100/' + song['year'] + '">' + song['year'] + '</a>' + ' Rank ' + song['rank']
                    + '</li>\n';
       }
 

@@ -79,5 +79,9 @@ height: 36px;
 
 .content h2{
     font-size: 24pt;
+    text-transform: capitalize;
 }
 
+#artistSongs {
+  text-transform: capitalize;
+}

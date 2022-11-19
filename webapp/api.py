@@ -112,7 +112,7 @@ def search_with_parameter(parameter, search_text):
                 result = {'artist_name':row[0]}
             else:
                 result = {'title':row[0], 'artist_name':row[1]}
-        
+
             result_list.append(result)
         cursor.close()
         connection.close()

@@ -1,5 +1,6 @@
 a:link{
   text-decoration: none;
+  color: black;
 }
 
 a:hover{
@@ -73,7 +74,7 @@ height: 36px;
   border-right: 1px solid white;
   height: 300px;
   margin: 5px;
-
+  text-transform: capitalize;
 }
 
 .right-content{
@@ -89,6 +90,11 @@ height: 36px;
 
 .right-content h3{
   text-align: center;
+}
+
+.right-content a{
+  color: black;
+  text-transform: capitalize;
 }
 
 #songLyrics {

@@ -47,8 +47,8 @@ a:hover{
   cursor: pointer;
   font-size: 20px;
   margin-left: -4px;
-  
-  
+
+
 }
 
 .dropdown {
@@ -85,4 +85,8 @@ a:hover{
 .right-content h2{
     font-size: 140%;
 
+}
+
+.right-content a{
+  text-transform: capitalize;
 }
