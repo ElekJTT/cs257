@@ -22,20 +22,11 @@ function initialize() {
         search_button.onclick = onSearch;
     }
 
-    // let search_bar = document.getElementById('Search_bar')
-    // if(search_bar){
-    //     search_bar.onsubmit = onSearch;
-    // }
-
+ 
     let years = document.getElementById('year_selector');
     if (years) {
         years.onchange = onYearsSelected;
     }
-
-    // let song = document.getElementById('yearSongs');
-    // if (song) {
-    //     song.onclick = onSongClick;
-    // }
 }
 
 // Returns the base URL of the API, onto which endpoint
@@ -139,19 +130,8 @@ function loadYearSongs() {
 }
 
 function loadResults() {
-    let option = '-1';
-    if(document.getElementById('Option')){
-        option = document.getElementById('Option').innerHTML;
-    } else {
-        return;
-    }
-    let search_text = '-1';
-    if( document.getElementById('Search_text')){
-        search_text = document.getElementById('Search_text').innerHTML;
-    } else {
-        return;
-    }
-    let url = getAPIBaseURL() + '/search/' + option + '/' + search_text;
+
+    let url = getAPIBaseURL() + window.location.pathname;
 
     // Send the request to the books API /years/ endpoint
     fetch(url, {method: 'get'})
@@ -222,7 +202,7 @@ function loadArtistSongs() {
           let song = song_list[k];
           artistBody += '<li><a href="' + url_helper + '/song/' + song['title'] + '">'
                    + song['title'] + '</a>'
-                   + ', rank ' + song['rank']
+                   + ', rank ' + song['rank'] + ' in ' + song['year']
                    + '</li>\n';
       }
 

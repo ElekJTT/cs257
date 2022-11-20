@@ -133,7 +133,7 @@ def get_artist_songs(artist):
                AND artists.id = artists_songs.artist_id
                AND songs.id = artists_songs.song_id
                AND songs.id = songs_years.song_id
-               ORDER BY rank'''
+               ORDER BY year'''
 
     song_list = []
     try:
