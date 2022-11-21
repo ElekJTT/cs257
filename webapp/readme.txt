@@ -8,6 +8,10 @@ DATA: All billboard top 100 songs from 1964-2015 with their artist, lyrics, year
 
   Favicon image, CC license: https://www.rawpixel.com/image/6448982/png-sticker-vintage
 
+  Header image by Hannah Minn: https://www.shondaland.com/inspire/a37974759/why-i-still-dig-for-vinyl-in-record-stores/
+
+
+
 STATUS: Users can select a specific year, search through for songs by a specified title string, by a specified artist,
   or by a string contained within the lyrics. All references to any song or artist are links which will take the user
   to a page for that song or artist. Users can click on the "Billboard Top 100" from any page to return to the Home page.
