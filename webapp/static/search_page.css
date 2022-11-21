@@ -6,7 +6,6 @@ a:hover{
   text-decoration: underline;
 }
 
-
 a {
   text-transform: capitalize;
 }
@@ -52,8 +51,6 @@ border-radius: 0 5px 5px 0;
 cursor: pointer;
 font-size: 20px;
 margin-left: -4px;
-
-
 }
 
 .dropdown {
@@ -61,7 +58,6 @@ border: 3px solid #00B4CC;
 font-size: 20px;
 border-radius: 5px 5px 5px 5px;
 height: 36px;
-
 }
 
 .content{
@@ -70,7 +66,6 @@ height: 36px;
   height: 500px;
   width: 100%;
   color: black;
-
 }
 
 .left-content{
@@ -78,7 +73,6 @@ height: 36px;
   border-right: 1px solid white;
   height: 300px;
   margin: 5px;
-
 }
 
 .right-content{
@@ -89,6 +83,5 @@ height: 36px;
 
 .right-content h2{
   font-size: 140%;
-
 }
 

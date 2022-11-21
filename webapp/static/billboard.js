@@ -22,7 +22,6 @@ function initialize() {
         search_button.onclick = onSearch;
     }
 
-
     let years = document.getElementById('year_selector');
     if (years) {
         years.onchange = onYearsSelected;
@@ -39,6 +38,7 @@ function getAPIBaseURL() {
     return baseURL;
 }
 
+//helper function that returns the base url of the window
 function getBaseURL() {
     let baseURL = window.location.protocol
                     + '//' + window.location.hostname
@@ -47,6 +47,7 @@ function getBaseURL() {
     return baseURL;
 }
 
+//retrieves all the years in the database to populate the year dropdown
 function loadYearsSelector() {
     let url = getAPIBaseURL() + '/years';
     if(window.location.pathname == '/'){
@@ -54,7 +55,6 @@ function loadYearsSelector() {
     } else {
         var selected_year = window.location.pathname.slice(-4);
     }
-
 
     fetch(url, {method:'get'})
 
@@ -95,10 +95,12 @@ function onYearsSelected() {
   window.location.replace(url);
 }
 
+//retrieves the top songs from a particular year
 function loadYearSongs() {
     let url = window.location;
 
     if (url == getBaseURL()) {
+      //sets the home page to display songs from 2015
       url = getAPIBaseURL() + '/top100/2015';
     } else {
       url = getAPIBaseURL() + window.location.pathname;
@@ -112,47 +114,42 @@ function loadYearSongs() {
         let yearBody = '';
         for (let k = 0; k < songs.length; k++) {
             let song = songs[k];
+            //creates links to the song and artist pages
             yearBody += '<li><a href="/artist/' + song['artist_name'] + '/song/' + song['title'] + '">'
                      + song['title'] + '</a>' + ' by ' + '<a href ="/artist/' + song['artist_name'] + '">' + song['artist_name']
                      + '</a>' + ', Rank ' + song['rank']
                      + '</li>\n';
         }
-
         let yearList = document.getElementById('yearSongs');
         if (yearList) {
             yearList.innerHTML = yearBody;
         }
-
     })
     .catch(function(error) {
         console.log(error);
     });
 }
 
+//retrieves the results of a search
 function loadResults() {
-
     let url = getAPIBaseURL() + window.location.pathname;
 
-    // Send the request to the books API /years/ endpoint
     fetch(url, {method: 'get'})
 
-    // When the results come back, transform them from a JSON string into
-    // a Javascript object (in this case, a list of author dictionaries).
     .then((response) => response.json())
 
-    // Once you have your list of year dictionaries, use it to build
-    // an HTML table displaying the song titles and authors.
     .then(function(results) {
-        // Add the <option> elements to the <select> element
         let resultsBody = '';
         for (let k = 0; k < results.length; k++) {
             let result = results[k];
             if (result['title']) {
+                //If the search option is songs or lyrics, creates links for the song and artist pages
                 resultsBody += '<li><a href="/artist/' + result['artist_name'] + '/song/' + result['title'] + '">'
                          + result['title'] + '</a>' + ' by ' + '<a href ="/artist/' + result['artist_name'] + '">' + result['artist_name']
                          + '</a>'
                          + '</li>\n';
             } else {
+                //Else creates links for the artist pages
                 resultsBody += '<li><a href ="/artist/' + result['artist_name'] + '">'
                     + result['artist_name']
                     + '</a></li>\n';
@@ -166,6 +163,7 @@ function loadResults() {
     })
 }
 
+//retrieves the lyrics of a song
 function loadSongLyrics() {
     let url = getAPIBaseURL() + window.location.pathname;
 
@@ -182,10 +180,10 @@ function loadSongLyrics() {
         let songArtistBody = '';
         songArtistBody += '<a href="/artist/' + song['artist_name'] + '/song/' + song['title'] + '">'
                  + song['title'] + '</a>' + ' by ' + '<a href ="/artist/' + song['artist_name'] + '">' + song['artist_name']
-                 + '</a>' + '\n';
+                 + '</a>\n';
 
         let lyricList = document.getElementById('songLyrics');
-        let songArtist = document.getElementById('songArtist')
+        let songArtist = document.getElementById('songArtist');
         if (lyricList) {
             lyricList.innerHTML = lyricsBody;
         }
@@ -198,6 +196,7 @@ function loadSongLyrics() {
     });
 }
 
+//retrieves all the songs by a particular artist
 function loadArtistSongs() {
     let url_helper = window.location.pathname;
     let url = getAPIBaseURL() + url_helper;
@@ -209,6 +208,7 @@ function loadArtistSongs() {
     .then(function(song_list) {
       let artistBody = '';
       for (let k = 0; k < song_list.length; k++) {
+          //creates links to the song and year pages
           let song = song_list[k];
           artistBody += '<li><a href="' + url_helper + '/song/' + song['title'] + '">'
                    + song['title'] + '</a>'
